@@ -1,0 +1,340 @@
+<krpano>
+    <!-- 下载动态更新热点、起始角度 -->
+    <events name="loading_elements"
+            keep="true"
+            onxmlcomplete="start_loading_elements();"
+    />
+
+    <layer name="set_container" style="subbtn" width="80" x="10" y="10"  onclick="set_startview();">
+        <layer name="set_txt" style="text" html="设为初始角度" />
+    </layer>
+
+    <layer name="add_container" style="subbtn" x="100" y="10"  onclick="add_hotspot();">
+        <layer name="add_txt" style="text" html="添加热点" />
+    </layer>
+    <layer name="add_btn_box" type="container" align="lefttop" x="100" y="40" keep="true" visible="false">
+        <layer name="con_add_txt_p" style="subbtn" x="0" y="0"  onclick="confirm_hotspot();">
+            <layer name="con_add_txt" style="text" html="确认" />
+        </layer>
+        <layer name="can_add_txt_p" style="subbtn" x="0" y="30"  onclick="cancel_add_hotspot();">
+            <layer name="can_add_txt" style="text" html="取消" />
+        </layer>
+    </layer>
+
+    <layer name="move_h_container" style="subbtn" x="170" y="10" onclick="move_hotspot();">
+        <layer name="move_h_txt" style="text" html="移动热点" />
+    </layer>
+    <layer name="move_h_btn_box" type="container" align="lefttop" x="170" y="40" keep="true" visible="false">
+        <layer name="move_h_txt_p" style="subbtn" x="0" y="0"  onclick="move_hotspot_done();">
+            <layer name="move_h_txt_d" style="text" html="完成"/>
+        </layer>
+    </layer>
+
+    <layer name="rotate_container" style="subbtn" width="70" x="240" y="10"  onclick="rotate_hotspot();">
+        <layer name="rotate_txt" style="text" html="旋转热点" />
+    </layer>
+    <layer name="rotate_btn_box" type="container" align="lefttop" x="240" y="40" keep="true" visible="false">
+        <layer name="rotate_s_txt_p" style="subbtn" width="70" x="0" y="0" onclick="rotate_set_angle(15);">
+            <layer name="rotate_s_txt" style="text" html="顺时针+15°" />
+        </layer>
+        <layer name="rotate_n_txt_p" style="subbtn" width="70" x="0" y="30" onclick="rotate_set_angle(-15)">
+            <layer name="rotate_n_txt" style="text" html="逆时针+15°" />
+        </layer>
+        <layer name="rotate_done_p" style="subbtn" width="70" x="0" y="60" onclick="rotate_hotspot_done();">
+            <layer name="rotate_done" style="text" html="完成" />
+        </layer>
+    </layer>
+
+    <layer name="del_h_container" style="subbtn" x="320" y="10" onclick="remove_hotspot();">
+        <layer name="del_h_txt" style="text" html="删除热点" />
+    </layer>
+    <layer name="del_h_btn_box" type="container" align="lefttop" x="320" y="40" keep="true" visible="false">
+        <layer name="del_h_txt_p" style="subbtn" x="0" y="0"  onclick="remove_hotspot_done();">
+            <layer name="del_h_txt_d" style="text" html="完成"/>
+        </layer>
+    </layer>
+
+    <layer name="radar_container" style="container" x="390" y="10"  onclick="js(showRadar())">
+        <layer name="radar_txt" style="text" html="设置沙盘" />
+    </layer>
+
+    <layer name="save_container" style="subbtn" x="460" y="10"  onclick="save_set();">
+        <layer name="save_txt" style="text" html="保存设置" />
+    </layer>
+
+    <!-- 通用提示信息 -->
+    <layer name="notice_container" type="container" align="center" y="-50" keep="true" visible="false">
+        <layer name="notice" style="text" html="" css="color:#ffffff;font-size:25px;font-family:Microsoft yahei;"/>
+    </layer>
+
+
+
+    <!-- 设置初始角度 -->
+    <action name="set_startview">
+        <!-- 取得当前视角 -->
+        copy(hlookat,view.hlookat);
+        copy(vlookat,view.vlookat);
+        jscall(calc('console.log("当前视角：hlookat:'+hlookat+',vlookat:'+vlookat+'")'));
+        js(save_xml_data(get(scene[get(xml.scene)].name),'view',get(hlookat),get(vlookat)));
+    </action>
+
+    <!-- 保存设置 -->
+    <action name="save_set">
+        js(post_xml_data());
+    </action>
+
+    <!-- 显示添加热点 -->
+    <action name="add_hotspot" keep="true">
+        if(hs_n GT 0,
+        inc(hs_n,1);
+        ,
+        <!-- 设置初始序号为1 -->
+        set(hs_n,1);
+        );
+        show_notice_msg('左键拖动热点进行定位');
+
+        <!-- 生成热点 -->
+        <!-- 取得当前视角 -->
+        copy(hlookat,view.hlookat);
+        copy(vlookat,view.vlookat);
+        txtadd(newspot,'hotspot_',get(hs_n));
+        addhotspot(get(newspot));
+        set(hotspot[get(newspot)].url,%SWFPATH%/skin/vtourskin_hotspot.png);
+        set(hotspot[get(newspot)].ath,get(hlookat));
+        set(hotspot[get(newspot)].atv,get(vlookat));
+        set(hotspot[get(newspot)].crop,'0|0|128|128');
+        set(hotspot[get(newspot)].rotate,0);
+        set(hotspot[get(newspot)].scale,0.5);
+        set(hotspot[get(newspot)].zoom,false);
+        set(hotspot[get(newspot)].vr_timeout, 2000);
+        set(hotspot[get(newspot)].ondown,draghotspot());
+        set(hotspot[get(newspot)].onup,jscall(calc('console.log("热点坐标：ath:'+hlookat+',atv:'+vlookat+'")')));
+        jscall(calc('console.log("添加热点:'+newspot+'")'));
+
+        <!-- 显示确认、取消添加按钮 -->
+        set(layer[add_btn_box].visible,true);
+
+        set_ele_status(false);
+    </action>
+
+    <!-- 拖动热点动态获取坐标 - call it once in the ondown event -->
+    <action name="draghotspot">
+        spheretoscreen(ath, atv, hotspotcenterx, hotspotcentery, 'l');
+        sub(drag_adjustx, mouse.stagex, hotspotcenterx);
+        sub(drag_adjusty, mouse.stagey, hotspotcentery);
+        asyncloop(pressed,
+        sub(dx, mouse.stagex, drag_adjustx);
+        sub(dy, mouse.stagey, drag_adjusty);
+        screentosphere(dx, dy, ath, atv);
+        <!-- 将坐标赋值到当前热点 -->
+        set(hlookat,get(ath));
+        set(vlookat,get(atv));
+        <!--jscall(calc('console.log("ath:'+ath+',atv:'+atv+'")'));-->
+        );
+    </action>
+
+    <!-- 取消添加热点 -->
+    <action name="cancel_add_hotspot">
+        txtadd('hname','hotspot_',get(hs_n));
+        set(r_hotspot,get(hname));
+        jscall(calc('console.log("删除热点:'+r_hotspot+'")'));
+        removehotspot(get(r_hotspot));
+        hide_scene_add_container();
+        set_ele_status(true);
+    </action>
+
+    <!-- 隐藏缩略图弹窗、隐藏确认|取消添加按钮 -->
+    <action name="hide_scene_add_container">
+        <!-- 还原所有列表背景为未选中 -->
+        for(set(i,0),i LT scene.count,inc(i),
+        set(layer[get(scene[get(i)].name)].bgcolor,"0x000000");
+        );
+        <!-- 还原未选中为null -->
+        set(c_hotspot,null);
+        set(layer[btn_con_link_container].enabled,false);
+        set(layer[scene_thumb_container].visible,false);
+        <!-- 显示确认、取消添加按钮 -->
+        set(layer[add_btn_box].visible,false);
+    </action>
+
+    <!-- 显示scene缩略图列表 -->
+    <action name="confirm_hotspot">
+        set(layer[scene_thumb_container].visible,true);
+    </action>
+
+    <!-- 选择一个scene（从scene缩略图列表中） -->
+    <action name="select_scene">
+        <!-- 还原所有列表背景为未选中 -->
+        for(set(i,0),i LT scene.count,inc(i),
+        set(layer[get(scene[get(i)].name)].bgcolor,"0x000000");
+        );
+        <!-- 设置选中 -->
+        set(linkedscene,get(name));
+        set(layer[btn_con_link_container].enabled,true);
+        set(bgcolor,"0x27aeff");
+        jscall(calc('console.log("链接场景为:'+linkedscene+'")'));
+    </action>
+
+    <!-- 确认链接scene -->
+    <action name="confirm_linkded_scene">
+        txtadd('hname','hotspot_',get(hs_n));
+        set(c_hotspot,get(hname));
+        set(hotspot[get(c_hotspot)].onclick,gotoscene(get(linkedscene)));
+        set(hotspot[get(c_hotspot)].ondown,null);
+        set(hotspot[get(c_hotspot)].onup,null);
+        jscall(calc('console.log("执行热点:'+c_hotspot+'的跳转场景为:'+linkedscene+'")'));
+        <!-- 保存数据到js -->
+        js(save_xml_data(get(scene[get(xml.scene)].name),'hotspots',get(hotspot[get(c_hotspot)].ath),get(hotspot[get(c_hotspot)].atv),get(linkedscene),get(hotspot[get(c_hotspot)].name)));
+        hide_scene_add_container();
+        set_ele_status(true);
+    </action>
+
+    <!-- 显示旋转热点 -->
+    <action name="rotate_hotspot">
+        set(layer[rotate_btn_box].visible,true);
+        set_ele_status(false);
+    </action>
+
+    <!-- 设置旋转角度 -->
+    <action name="rotate_set_angle">
+        set(layer[rotate_s_txt_p].bgcolor,'0x000000');
+        set(layer[rotate_n_txt_p].bgcolor,'0x000000');
+        set(bgcolor,"0x27aeff");
+        set(rotate_angle_p,%1);
+        <!-- 显示提示信息 -->
+        show_notice_msg('左键点击热点进行旋转');
+    </action>
+
+    <!-- 隐藏旋转热点（完成）-->
+    <action name="rotate_hotspot_done">
+        set(rotate_angle_p,null);
+        set(layer[rotate_s_txt_p].bgcolor,'0x000000');
+        set(layer[rotate_n_txt_p].bgcolor,'0x000000');
+        set(layer[rotate_btn_box].visible,false);
+        set_ele_status(true);
+    </action>
+
+    <!-- 显示删除热点 -->
+    <action name="remove_hotspot">
+        set(is_del_hp,true);
+        set(layer[del_h_btn_box].visible,true);
+        <!-- 显示提示信息 -->
+        show_notice_msg('左键点击热点删除');
+        set_ele_status(false);
+    </action>
+
+    <!-- 完成删除热点 -->
+    <action name="remove_hotspot_done">
+        set(is_del_hp,false);
+        set(layer[del_h_btn_box].visible,false);
+        set_ele_status(true);
+    </action>
+
+    <!-- 显示移动热点 -->
+    <action name="move_hotspot">
+        set(layer[move_h_btn_box].visible,true);
+        for(set(i,0),i LT hotspot.count,inc(i),
+        set(hotspot[get(i)].ondown,draghotspot());
+        set(hotspot[get(i)].onup,jscall(calc('console.log("热点坐标：ath:'+hlookat+',atv:'+vlookat+'")'));js(move_xml_h(get(scene[get(xml.scene)].name),get(name),get(hlookat),get(vlookat))););
+        );
+        <!-- 显示提示信息 -->
+        show_notice_msg('左键拖动热点进行定位');
+        set_ele_status(false);
+    </action>
+
+    <!-- 完成移动热点 -->
+    <action name="move_hotspot_done">
+        for(set(i,0),i LT hotspot.count,inc(i),
+        set(hotspot[get(i)].ondown,null);
+        set(hotspot[get(i)].onup,null);
+        );
+        set(layer[move_h_btn_box].visible,false);
+        set_ele_status(true);
+    </action>
+
+    <!-- 设置本身之外的元素无法获取 -->
+    <action name="set_ele_status">
+        set(layer[set_container].enabled,%1);
+        set(layer[add_container].enabled,%1);
+        set(layer[rotate_container].enabled,%1);
+        set(layer[move_h_container].enabled,%1);
+        set(layer[del_h_container].enabled,%1);
+        set(layer[save_container].enabled,%1);
+        if(%1===true,
+        set(layer[set_container].bgalpha,0.5);
+        set(layer[add_container].bgalpha,0.5);
+        set(layer[rotate_container].bgalpha,0.5);
+        set(layer[move_h_container].bgalpha,0.5);
+        set(layer[del_h_container].bgalpha,0.5);
+        set(layer[save_container].bgalpha,0.5);
+        );
+    </action>
+
+    <!-- 显示提示信息 -->
+    <action name="show_notice_msg">
+        set(layer[notice].html,%1);
+        set(layer[notice_container].visible,true);
+        tween(layer[notice_container].alpha, 0.0, 2, easeInQuint);
+        delayedcall(2,set(layer[notice_container].visible,false);set(layer[notice_container].alpha,1););
+    </action>
+
+    <!-- scene跳转 -->
+    <action name="gotoscene">
+        if(rotate_angle_p,
+        add(n_n_angle,rotate,rotate_angle_p);
+        jscall(calc('console.log("旋转热点:'+n_n_angle+'")'));
+        <!-- 保存到js -->
+        js(save_xml_data(get(scene[get(xml.scene)].name),'rotate',get(name),get(n_n_angle)));
+        set(rotate,get(n_n_angle)),
+        if(is_del_hp,
+        jscall(calc('console.log("删除热点:'+name+'")'));
+        js(del_xml_h(get(scene[get(xml.scene)].name),get(name)));
+        removehotspot(get(name)),
+        mul(newdepth, depth, 2);
+        skin_hidehotspot_vr();
+        tween(depth, get(newdepth), 0.25);
+        tween(oy|alpha|rx, -100|0|45, 0.25, default, loadscene(%1, null, MERGE, BLEND(2)));
+        );
+        );
+    </action>
+
+    <!-- 切换(加载)场景时自动加载热点、初始角度 -->
+    <action name="start_loading_elements">
+        js(init_xml_data());
+    </action>
+
+    <!-- a style for a simple textfield element -->
+    <style name="text"
+           url="%SWFPATH%/plugins/textfield.swf"
+           background="false"
+           css="color:#FFFFFF;"
+           enabled="false"
+           align="center"
+    />
+
+    <!-- a style for a simple container element -->
+    <style name="container"
+           type="container"
+           keep="true"
+           width="60"
+           height="20"
+           bgcolor="0x000000"
+           bgalpha="0.5"
+           bgcapture="true"
+           align="lefttop"
+    />
+
+    <!-- a style for simple button -->
+    <style name="subbtn"
+           type="container"
+           keep="true"
+           width="60"
+           height="20"
+           bgcolor="0x000000"
+           bgalpha="0.5"
+           bgcapture="true"
+           align="lefttop"
+           onover="set(bgalpha,0.7);"
+           onout="set(bgalpha,0.5)"
+    />
+</krpano>
