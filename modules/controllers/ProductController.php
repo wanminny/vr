@@ -6,7 +6,8 @@ use app\models\Product;
 use yii\web\Controller;
 use Yii;
 use yii\data\Pagination;
-use crazyfd\qiniu\Qiniu;
+//use crazyfd\qiniu\Qiniu;
+use app\common\libs\Qiniu;
 use app\modules\controllers\CommonController;
 
 class ProductController extends CommonController
