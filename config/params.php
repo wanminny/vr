@@ -13,6 +13,6 @@ return [
     'defaultValue' => [
         'avatar' => 'assets/admin/img/contact-img.png',
     ],
-     "dir_path" =>"/www/leju/vr/",
+     "dir_path" =>"/tmp/vr",
 
 ];
