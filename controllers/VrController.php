@@ -16,19 +16,40 @@ class VrController extends Controller
 
     public $enableCsrfValidation = false;
 
+
     private $upload_path = "/www/leju/vr/"; //上传文件的存放路径
 
 
+    //获取预览页面
     public function actionIndex()
     {
-        return $this->render("index");
+        $pid = \Yii::$app->request->getQueryParam("productid","");
+
+        if($pid)
+        {
+            return $this->render("index",["pid"=> $pid]);
+
+        }else{
+            return $this->render("index");
+        }
     }
 
 
+    //获取编辑页面
     public function actionEdit()
     {
-        return $this->render("edit");
+        $pid = \Yii::$app->request->getQueryParam("productid","");
+//        var_dump($pid);die;
+        if($pid)
+        {
+            return $this->render("edit",["pid"=> $pid]);
+
+        }else {
+            return $this->render("edit");
+        }
     }
+
+
 
     public function actionSave()
     {

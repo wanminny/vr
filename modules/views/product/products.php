@@ -37,12 +37,13 @@
                                 <a href="#" class="name"><?php echo $product->title; ?></a>
                             </td>
 
+<!--                            http://vr2.com/index.php?r=vr/edit&productid=36-->
                             <td class="align-right">
                             <a href="<?php echo yii\helpers\Url::to(['product/mod', 'productid' => $product->productid]); ?>">编辑项目</a>
 <!--                            <a href="--><?php //echo yii\helpers\Url::to(['product/on', 'productid' => $product->productid]); ?><!--">上架</a>-->
 <!--                            <a href="--><?php //echo yii\helpers\Url::to(['product/off', 'productid' => $product->productid]); ?><!--">下架</a>-->
-                                <a href="<?php echo yii\helpers\Url::to(['product/edit', 'productid' => $product->productid]); ?>">编辑漫游</a>
-                                <a href="<?php echo yii\helpers\Url::to(['product/tour', 'productid' => $product->productid]); ?>">预览</a>
+                                <a href="<?php echo yii\helpers\Url::to(['vr/edit', 'productid' => $product->productid]); ?>">编辑漫游</a>
+                                <a href="<?php echo yii\helpers\Url::to(['vr/index', 'productid' => $product->productid]); ?>">预览</a>
                                 <a href="<?php echo yii\helpers\Url::to(['product/del', 'productid' => $product->productid]); ?>">删除</a>
                             </td>
                         </tr>
