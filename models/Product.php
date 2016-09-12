@@ -59,7 +59,7 @@ class Product extends ActiveRecord
                 {
                     $dir = \Yii::$app->params['dir_path'].$id;
                     var_dump($dir);
-                    var_dump(mkdir($id,755));
+                    var_dump(mkdir($id,0755,true));
 
                 }
                 return true;

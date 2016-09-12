@@ -14,7 +14,10 @@ use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
 use app\models\SignupForm;
 
+use app\common\libs\partner\sinaweibo\SinaweiboCall;
 
+use app\common\libs\partner\qqconect\QqconnectCall;
+use app\common\libs\partner\Factory;
 
 class SiteController extends Controller
 {
@@ -75,6 +78,23 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionTest()
+    {
+        echo 11;
+
+
+//        $demo =  new SinaweiboCall();
+        var_dump(Factory::create("sinaweibo"));
+        exit;
+        var_dump($demo);die;
+
+        $demo =  new QqconnectCall();
+        var_dump($demo);die;
+        $demo->getAuthorizeUrl();
+        var_dump($demo);
+        die;
+
+    }
     /**
      * Login action.
      *
