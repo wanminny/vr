@@ -129,7 +129,7 @@ class ProductController extends CommonController
         }
 //        var_dump($this->upload_path,$pics_path);
 //        $toolPath = "sudo /Users/wanmin/Desktop/krpano-1.19-pr5/krpanoTools makepano ";
-        $toolPath = "/tmp/vr/krpano-1.19-pr5/krpanoTools makepano ";
+        $toolPath = "/tmp/vr/krpano-1.19-pr5/krpano_Tools makepano ";
         $config = " -config=templates/vtour-multires.config ";
 //        $image = "/Users/wanmin/Desktop/logoo.jpg";
         $imgName = $pics_path;
