@@ -10,6 +10,10 @@ namespace app\modules\controllers;
 
 use yii\web\Controller;
 
+use app\common\libs\lss\Array2XML;
+use app\common\libs\lss\XML2Array;
+
+
 class VrController extends CommonController
 {
 
@@ -49,12 +53,39 @@ class VrController extends CommonController
         }
     }
 
-
-
-    public function actionSave()
+    function xmlToArray($xml)
     {
+        //禁止引用外部xml实体
+        libxml_disable_entity_loader(true);
+        $values = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+        return $values;
+    }
 
-        echo 11;
+    function arrayToXml($arr)
+    {
+        $xml = "<xml>";
+        foreach ($arr as $key=>$val)
+        {
+                $xml.="<".$key.">".$val."</".$key.">";
+        }
+        $xml.="</xml>";
+        return $xml;
+    }
+
+    //test
+    public function actionTest()
+    {
+        $demo = \Yii::$app->basePath."/web/36/vtour/tour.xml";
+        $xml = file_get_contents($demo);
+
+       $demo =  $this->xmlToArray($xml);
+        var_dump($demo);
+//        $arr = XML2Array::createArray($xml);
+        $a = Array2XML::createXml("krpano",$demo);
+//        var_dump($a);die;
+        $c =$a->saveXML($a);
+        var_dump($c);
+
     }
 
 
