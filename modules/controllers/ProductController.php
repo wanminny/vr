@@ -12,6 +12,10 @@ use app\modules\controllers\CommonController;
 
 class ProductController extends CommonController
 {
+
+    public $upload_path = '';
+
+
     public function actionList()
     {
         $model = Product::find();
@@ -32,7 +36,7 @@ class ProductController extends CommonController
         $cate = new Category;
         $list = $cate->getOptions();
         unset($list[0]);
-        
+
         if (Yii::$app->request->isPost) {
             $post = Yii::$app->request->post();
             $pics = $this->upload();
@@ -44,10 +48,12 @@ class ProductController extends CommonController
                 $post['Product']['pics_name'] = $pics['pics_name'];
                 $post['Product']['cover_name'] = $pics['cover_name'];
             }
-            if ($pics && $model->add($post)) {
 
-//                $reslt = $this->gen();
-//                echo $reslt;
+            $proId = 0;
+            if ($pics && $model->add($post,$proId)) {
+//                var_dump($proId);die;
+                $reslt = $this->gen($proId);
+                echo $reslt;
                 Yii::$app->session->setFlash('info', '添加成功');
             } else {
                 Yii::$app->session->setFlash('info', '添加失败');
@@ -94,24 +100,46 @@ class ProductController extends CommonController
 
     //sudo /Users/wanmin/Desktop/krpano-1.19-pr5/krpanoTools makepano
     //  -config=templates/vtour-multires.config /Users/wanmin/Desktop/logoo.jpg -panotype=cylinder -hfov=360
-    public function gen()
+    public function gen($proId)
     {
-        $imgName = $_POST['imagename']?$_POST['imagename']:"";
-        if(empty($imgName))
-        {
-            return 1;
-        }
 
-        $toolPath = "sudo /Users/wanmin/Desktop/krpano-1.19-pr5/krpanoTools makepano ";
+        $this->upload_path = \Yii::$app->params['dir_path'];
+
+        ///获取图片
+        $pro = new Product();
+        $info = $pro->getProInfoById($proId);
+
+        if($info)
+        {
+            $cover_name = $info['cover_name'];
+            $pics_name  = $info['pics_name'];
+
+            //用处？ 先不处理
+            $cover_path = $this->upload_path.$cover_name;
+
+            $pic_arr = explode(",",$pics_name);
+            $pics_path = '';
+            if(is_array($pic_arr) && count($pic_arr))
+            {
+                $pics_path .= $this->upload_path.$pics_name." ";
+            }
+            else{
+                $pics_path = $this->upload_path.$pics_name;
+            }
+        }
+//        var_dump($this->upload_path,$pics_path);
+//        $toolPath = "sudo /Users/wanmin/Desktop/krpano-1.19-pr5/krpanoTools makepano ";
+        $toolPath = "sudo  krpano-1.19-pr5/krpanoTools makepano ";
         $config = " -config=templates/vtour-multires.config ";
 //        $image = "/Users/wanmin/Desktop/logoo.jpg";
+        $imgName = $pics_path;
 
-        $image = $this->upload_path.$imgName;
-
+//        $image = $this->upload_path.$imgName;
+        $image = $pics_path;
         $parameters = " -panotype=cylinder -hfov=360 ";
 
         $command = $toolPath.$config.$image.$parameters;
-//		die;
+var_dump($image,file_exists($image));
         $returnValue = '';
         if(file_exists($image))
         {
@@ -223,7 +251,6 @@ EOF"));
         Product::deleteAll('productid = :pid', [':pid' => $productid]);
         return $this->redirect(['product/list']);
     }
-
 
 
 

@@ -47,7 +47,7 @@ class Product extends ActiveRecord
         return "{{%product}}";
     }
 
-    public function add($data)
+    public function add($data,&$proId)
     {
 //        if($data['Product']['pics'] != "[]")
 //        {
@@ -57,15 +57,20 @@ class Product extends ActiveRecord
                 $id =  \Yii::$app->db->getLastInsertId();
                 if($id)
                 {
+                    $proId = $id;
                     $dir = \Yii::$app->params['dir_path'].$id;
                     var_dump($dir);
-                    var_dump(mkdir($id,0755,true));
-
+//                    var_dump(mkdir($id,0755,true));
                 }
                 return true;
             }
 //        }
         return false;
+    }
+
+    public  function getProInfoById($proId)
+    {
+        return $this->findOne($proId);
     }
 
 
