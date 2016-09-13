@@ -12,5 +12,6 @@ return [
         'avatar' => 'assets/admin/img/contact-img.png',
     ],
      "dir_path" =>"/tmp/",
+    "xml_path" => "/web/36/vtour/tour.xml",
 
 ];

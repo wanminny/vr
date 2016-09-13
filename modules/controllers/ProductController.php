@@ -3,6 +3,7 @@
 namespace app\modules\controllers;
 use app\models\Category;
 use app\models\Product;
+use Think\Exception;
 use yii\web\Controller;
 use Yii;
 use yii\data\Pagination;
@@ -14,6 +15,8 @@ class ProductController extends CommonController
 {
 
     public $upload_path = '';
+
+    public $xml_path = '';
 
 
     public function actionList()
@@ -157,6 +160,9 @@ var_dump($image,file_exists($image),$command);
 
         if($returnValue === 0)
         {
+
+            //todb and genxml
+            $this->actionConv($proId);
             return  "ok!";
         }
         else{
@@ -164,6 +170,124 @@ var_dump($image,file_exists($image),$command);
         }
     }
 
+
+    public function xmlToArray($xml)
+    {
+        //禁止引用外部xml实体
+        libxml_disable_entity_loader(true);
+        $values = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+        return $values;
+    }
+
+    //test
+    public function actionTest()
+    {
+        $demo = \Yii::$app->basePath.\Yii::$app->params['xml_path'];
+        $xml = file_get_contents($demo);
+
+        $demo =  $this->xmlToArray($xml);
+        var_dump($demo);
+//        $arr = XML2Array::createArray($xml);
+        $a = Array2XML::createXml("krpano",$demo);
+//        var_dump($a);die;
+        $c =$a->saveXML($a);
+        var_dump($c);
+
+    }
+
+    //根据生成的tour.xml -> tour_edit.xml
+    public function actionConv($proId)
+    {
+        $proId = "";
+        //入库
+        $xml_path = \Yii::$app->basePath.\Yii::$app->params['xml_path'];
+        $xml = file_get_contents($xml_path);
+
+        $demo =  $this->xmlToArray($xml);
+//        var_dump($demo);die;
+        $connection = \Yii::$app->db;
+        $transaction = $connection->beginTransaction();
+        try{
+            if(is_array($demo))
+            {
+
+
+                //scene库
+                $scene = $demo['scene'];
+                //只有一个场景
+                if(isset($scene['@attributes']))
+                {
+
+                    $scene_name = $scene['@attributes']['name'];
+                    $scene_title = $scene['@attributes']['title'];
+                    $scene_thumburl = $scene['@attributes']['thumburl'];
+                    $scene_pro_id = $proId;
+
+                }
+                else{
+                    //多个场景
+                    foreach($scene as $key => $value)
+                    {
+                        $scene_name = $scene['@attributes']['name'];
+                        $scene_title = $scene['@attributes']['title'];
+                        $scene_thumburl = $scene['@attributes']['thumburl'];
+                        $scene_pro_id = $proId;
+                    }
+
+                }
+                //views库
+                $pro_view = $scene['view'];
+                if($pro_view && is_array($pro_view))
+                {
+                    $pro_view_attr = $pro_view['@attributes'];
+                    if(is_array($pro_view_attr) && count($pro_view_attr))
+                    {
+                        $view_hlookat = $pro_view_attr['hlookat'];
+                        $view_vlookat =  $pro_view_attr['vlookat'];
+                        $scene_id = "";
+                    }
+                }
+
+                //hotspots库
+                $pro_view_hotspot = $scene['hotspot'];
+                if(is_array($pro_view_hotspot))
+                {
+                    //只有一个热点
+                    if(isset($pro_view_hotspot['@attributes']))
+                    {
+                        $pro_view_hotspot_ath = $pro_view_hotspot['@attributes']['ath'];
+                        $pro_view_hotspot_atv = $pro_view_hotspot['@attributes']['atv'];
+                        $pro_view_hotspot_linkedscene = $pro_view_hotspot['@attributes']['linkedscene'];
+                        $pro_view_hotspot_hname = $pro_view_hotspot['@attributes']['hname'];
+                        $pro_view_hotspot_rotate = $pro_view_hotspot['@attributes']['rotate'];
+                        $pro_view_hotspot_scene_id = "";
+                    }
+                    //若干个热点
+                    else{
+                        foreach($pro_view_hotspot as $k => $v)
+                        {
+                            $pro_view_hotspot_ath = $pro_view_hotspot['@attributes']['ath'];
+                            $pro_view_hotspot_atv = $pro_view_hotspot['@attributes']['atv'];
+                            $pro_view_hotspot_linkedscene = $pro_view_hotspot['@attributes']['linkedscene'];
+                            $pro_view_hotspot_hname = $pro_view_hotspot['@attributes']['hname'];
+                            $pro_view_hotspot_rotate = $pro_view_hotspot['@attributes']['rotate'];
+                            $pro_view_hotspot_scene_id = "";
+                        }
+                    }
+                }
+
+
+            }
+        }catch (Exception $e) {
+            $transaction->rollBack();
+        }
+
+        $a = Array2XML::createXml("krpano",$demo);
+//        var_dump($a);die;
+        $c =$a->saveXML($a);
+        //同时生成edit.xml;
+
+    }
 
 
     public function actionMod()

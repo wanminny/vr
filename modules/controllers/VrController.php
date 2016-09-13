@@ -52,42 +52,7 @@ class VrController extends CommonController
             return $this->render("edit");
         }
     }
-
-    function xmlToArray($xml)
-    {
-        //禁止引用外部xml实体
-        libxml_disable_entity_loader(true);
-        $values = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
-        return $values;
-    }
-
-    function arrayToXml($arr)
-    {
-        $xml = "<xml>";
-        foreach ($arr as $key=>$val)
-        {
-                $xml.="<".$key.">".$val."</".$key.">";
-        }
-        $xml.="</xml>";
-        return $xml;
-    }
-
-    //test
-    public function actionTest()
-    {
-        $demo = \Yii::$app->basePath."/web/36/vtour/tour.xml";
-        $xml = file_get_contents($demo);
-
-       $demo =  $this->xmlToArray($xml);
-        var_dump($demo);
-//        $arr = XML2Array::createArray($xml);
-        $a = Array2XML::createXml("krpano",$demo);
-//        var_dump($a);die;
-        $c =$a->saveXML($a);
-        var_dump($c);
-
-    }
-
+    
 
     public function actionUp1()
     {
