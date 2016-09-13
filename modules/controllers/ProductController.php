@@ -129,7 +129,7 @@ class ProductController extends CommonController
         }
 //        var_dump($this->upload_path,$pics_path);
 //        $toolPath = "sudo /Users/wanmin/Desktop/krpano-1.19-pr5/krpanoTools makepano ";
-        $toolPath = "sudo  krpano-1.19-pr5/krpanoTools makepano ";
+        $toolPath = "/tmp/vr/krpano-1.19-pr5/krpanoTools makepano ";
         $config = " -config=templates/vtour-multires.config ";
 //        $image = "/Users/wanmin/Desktop/logoo.jpg";
         $imgName = $pics_path;
@@ -139,18 +139,19 @@ class ProductController extends CommonController
         $parameters = " -panotype=cylinder -hfov=360 ";
 
         $command = $toolPath.$config.$image.$parameters;
-var_dump($image,file_exists($image));
+var_dump($image,file_exists($image),$command);
         $returnValue = '';
         if(file_exists($image))
         {
             $output = [];
 
-            if(file_exists("/Users/wanmin/Desktop/vtour"))
-            {
-                (exec("sudo  rm -rf vtour<<<EOF
+//            if(file_exists("/Users/wanmin/Desktop/vtour"))
+//            {
+//                (exec("sudo  rm -rf vtour<<<EOF
+//
+//EOF"));
+//            }
 
-EOF"));
-            }
             (exec($command,$output,$returnValue));
         }
 
