@@ -135,7 +135,7 @@ class ProductController extends Controller
         }
 //        var_dump($this->upload_path,$pics_path);
 //        $toolPath = "sudo /Users/wanmin/Desktop/krpano-1.19-pr5/krpanoTools makepano ";
-        $toolPath = " ./krpano/krpanotools makepano  ";
+        $toolPath = " /mnt/wwwroot/vr/web/krpano/krpanotools makepano  ";
         $config = " -config=templates/vtour-multires.config ";
 //        $image = "/Users/wanmin/Desktop/logoo.jpg";
         $imgName = $pics_path;
@@ -147,7 +147,7 @@ class ProductController extends Controller
         $command = $toolPath.$config.$image.$parameters;
         var_dump($image,file_exists($image),$command);
         $returnValue = '';
-        if(file_exists($image))
+//        if(file_exists($image))
         {
             $output = [];
             $path = \Yii::$app->params['dir_path'];
