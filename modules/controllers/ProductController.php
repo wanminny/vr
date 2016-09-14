@@ -153,7 +153,7 @@ class ProductController extends Controller
             $path = \Yii::$app->params['dir_path'];
             if(file_exists($path."vtour"))
             {
-                (exec("rm -rf vtour"));
+                (exec("rm -rf upload/vtour"));
             }
 
             (exec($command,$output,$returnValue));
