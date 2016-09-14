@@ -14,10 +14,11 @@ use app\models\Scene;
 use app\models\view;
 use app\models\Hotspots;
 use app\common\libs\lss\Array2XML;
-use app\common\libs\lss\XML2Array;
+//use app\common\libs\lss\XML2Array;
 
 
-class ProductController extends CommonController
+//class ProductController extends CommonController
+class ProductController extends Controller
 {
 
     public $upload_path = '';
@@ -29,9 +30,7 @@ class ProductController extends CommonController
     {
         $model = Product::find();
         $count = $model->count();
-//        var_dump(Yii::$app->params);die;
         $pageSize = Yii::$app->params['pageSize']['product'];
-//        var_dump($pageSize);die;
         $pager = new Pagination(['totalCount' => $count, 'pageSize' => $pageSize]);
         $products = $model->offset($pager->offset)->limit($pager->limit)->all();
         $this->layout = "layout1";
@@ -114,16 +113,13 @@ class ProductController extends CommonController
     {
 
         $this->upload_path = \Yii::$app->params['dir_path'];
-
         ///获取图片
         $pro = new Product();
         $info = $pro->getProInfoById($proId);
-
         if($info)
         {
             $cover_name = $info['cover_name'];
             $pics_name  = $info['pics_name'];
-
             //用处？ 先不处理
             $cover_path = $this->upload_path.$cover_name;
 
@@ -139,7 +135,7 @@ class ProductController extends CommonController
         }
 //        var_dump($this->upload_path,$pics_path);
 //        $toolPath = "sudo /Users/wanmin/Desktop/krpano-1.19-pr5/krpanoTools makepano ";
-        $toolPath = "/tmp/vr/krpano-1.19-pr5/krpano_Tools makepano ";
+        $toolPath = " ./krpanotools makepano  ";
         $config = " -config=templates/vtour-multires.config ";
 //        $image = "/Users/wanmin/Desktop/logoo.jpg";
         $imgName = $pics_path;
@@ -149,7 +145,7 @@ class ProductController extends CommonController
         $parameters = " -panotype=cylinder -hfov=360 ";
 
         $command = $toolPath.$config.$image.$parameters;
-var_dump($image,file_exists($image),$command);
+        var_dump($image,file_exists($image),$command);
         $returnValue = '';
         if(file_exists($image))
         {
@@ -187,7 +183,7 @@ var_dump($image,file_exists($image),$command);
     }
 
     //根据生成的tour.xml -> tour_edit.xml
-    public function actionConv()
+    public function actionConv($proId = 0)
     {
         $proId = "";
         //入库
@@ -195,7 +191,7 @@ var_dump($image,file_exists($image),$command);
         $xml = file_get_contents($xml_path);
         $demo =  $this->xmlToArray($xml);
 
-        var_dump($demo);die;
+//        var_dump($demo);die;
         $connection = \Yii::$app->db;
         $transaction = $connection->beginTransaction();
         try
@@ -375,17 +371,61 @@ var_dump($image,file_exists($image),$command);
     /// 保存设置
     public function actionSave()
     {
-        $data = Yii::$app->request->post();
-        //更新数据库
+        //或者可以将其已JSON字符串 POS过来
+        $data = Yii::$app->request->get();
+        var_dump($data);
+//        http_build_url();
+//        http_build_query($data);
+       //更新数据库
+        if($data)
+        {
+            $proId = isset($data['pid']);
+            if($proId)
+            {
+                //根据工程ID和场景名称获取热点表数据
+                if(is_array($data['data']) && count($data['data']))
+                {
+                    foreach($data['data'] as $key => $v)
+                    {
+                        //获取一个PID所属于的所有场景的名称
+                        $scene_names = Scene::getSceneName($proId);
+                        foreach($scene_names as $k2 => $v2)
+                        {
+                            if($key ==  $v2['name'])
+                            {
+                                foreach($v as $k1 => $v1)
+                                {
+                                    //处理view （暂时不需要处理）
+
+                                    //处理picspots (暂时不需要处理)
+
+                                    //hotspots
+                                    if($k1 == "hotspots" && !empty($v1))
+                                    {
+                                        //更新对应的hname 而且 sceneid = $v2['id']
+                                        Scene::editInfo($v2['id'],$v1);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
 
     }
 
-    //获取XML
-    public function actionGetxml()
+    //获取XML （json数据）
+    public function actionGetxml($proId = 0)
     {
-
+        if($proId)
+        {
+            $rlt = Scene::getSeneInfo($proId);
+            return $rlt;
+        }
     }
+
 
     public function actionMod()
     {
@@ -401,7 +441,6 @@ var_dump($image,file_exists($image),$command);
             $post = Yii::$app->request->post();
             $qiniu = new Qiniu(Product::AK, Product::SK, Product::DOMAIN, Product::BUCKET);
             $post['Product']['cover'] = $model->cover;
-
 //            if($model->cover)
             {
                 if ($_FILES['Product']['error']['cover'] == 0) {
