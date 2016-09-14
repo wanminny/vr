@@ -52,7 +52,16 @@ class VrController extends CommonController
             return $this->render("edit");
         }
     }
-    
+
+
+    public function actionTest()
+    {
+
+        $redis = \Yii::$app->redis;
+        $redis->set("test","asdfsfafsd");
+        echo $redis->get("test");
+    }
+
 
     public function actionUp1()
     {

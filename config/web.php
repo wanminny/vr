@@ -14,6 +14,8 @@ $config = [
         ],
     ],
 
+
+
     'components' => [
 //        'urlManager' => [
 //            // Disable index.php
@@ -31,6 +33,12 @@ $config = [
 //
 //            ],
 //        ],
+        'redis' => [
+            'class' => 'yii\redis\Connection',
+            'hostname' => 'localhost',
+            'port' => 6379,
+            'database' => 0,
+        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
