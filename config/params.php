@@ -11,7 +11,7 @@ return [
     'defaultValue' => [
         'avatar' => 'assets/admin/img/contact-img.png',
     ],
-     "dir_path" =>"/tmp/",
+     "dir_path" =>"upload/",
     "xml_path" => "/web/36/vtour/tour.xml",
 
 ];

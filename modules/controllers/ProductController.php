@@ -135,7 +135,7 @@ class ProductController extends Controller
         }
 //        var_dump($this->upload_path,$pics_path);
 //        $toolPath = "sudo /Users/wanmin/Desktop/krpano-1.19-pr5/krpanoTools makepano ";
-        $toolPath = " ./krpanotools makepano  ";
+        $toolPath = " ./krpano/krpanotools makepano  ";
         $config = " -config=templates/vtour-multires.config ";
 //        $image = "/Users/wanmin/Desktop/logoo.jpg";
         $imgName = $pics_path;
@@ -151,19 +151,16 @@ class ProductController extends Controller
         {
             $output = [];
 
-//            if(file_exists("/Users/wanmin/Desktop/vtour"))
-//            {
-//                (exec("sudo  rm -rf vtour<<<EOF
-//
-//EOF"));
-//            }
+            if(file_exists("/tmp/vtour"))
+            {
+                (exec("rm -rf vtour"));
+            }
 
             (exec($command,$output,$returnValue));
         }
 
         if($returnValue === 0)
         {
-
             //todb and genxml
             $this->actionConv($proId);
             return  "ok!";
