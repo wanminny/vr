@@ -228,11 +228,12 @@ class ProductController extends Controller
                     $scene->title = $scene_title;
                     $scene->thumburl = $scene_thumburl;
                     $scene->pro_id = $scene_pro_id;
-                    if($scene->save())
+                    if($scene->save(false))
                     {
                         $id =  \Yii::$app->db->getLastInsertId();
                     }
                     else{
+                        var_dump($scene->getErrors());
                         throw new \Exception("insert fail!");
                     }
 
@@ -303,6 +304,7 @@ class ProductController extends Controller
                             $id =  \Yii::$app->db->getLastInsertId();
                         }
                         else{
+                            var_dump($scene->getErrors());
                             throw new \Exception("insert fail!");
                         }
 
@@ -419,7 +421,7 @@ class ProductController extends Controller
                 }
             }
         }
-        
+
     }
 
     //获取XML （json数据）
