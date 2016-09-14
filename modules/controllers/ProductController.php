@@ -109,6 +109,7 @@ class ProductController extends CommonController
 
     //sudo /Users/wanmin/Desktop/krpano-1.19-pr5/krpanoTools makepano
     //  -config=templates/vtour-multires.config /Users/wanmin/Desktop/logoo.jpg -panotype=cylinder -hfov=360
+    //./krpanotools makepano -config=templates/vtour-multires.config /tmp/baidu.jpeg -panotype=cylinder -hfov=360
     public function gen($proId)
     {
 
