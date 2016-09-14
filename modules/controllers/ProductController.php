@@ -150,8 +150,8 @@ class ProductController extends Controller
         if(file_exists($image))
         {
             $output = [];
-
-            if(file_exists("/tmp/vtour"))
+            $path = \Yii::$app->params['dir_path'];
+            if(file_exists($path."vtour"))
             {
                 (exec("rm -rf vtour"));
             }
