@@ -228,10 +228,16 @@ class ProductController extends Controller
                     $scene->title = $scene_title;
                     $scene->thumburl = $scene_thumburl;
                     $scene->pro_id = $scene_pro_id;
-                    $scene->save();
+                    if($scene->save())
+                    {
+                        $id =  \Yii::$app->db->getLastInsertId();
+                    }
+                    else{
+                        throw new \Exception("insert fail!");
+                    }
 
                     //hotspots库
-                    $pro_view_hotspot = $scene['hotspot'];
+                    $pro_view_hotspot = isset($scene['hotspot'])?$scene['hotspot']:'';
                     if(is_array($pro_view_hotspot))
                     {
                         //只有一个热点
@@ -242,7 +248,7 @@ class ProductController extends Controller
                             $pro_view_hotspot_linkedscene = $pro_view_hotspot['@attributes']['linkedscene'];
                             $pro_view_hotspot_hname = $pro_view_hotspot['@attributes']['hname'];
                             $pro_view_hotspot_rotate = $pro_view_hotspot['@attributes']['rotate'];
-                            $pro_view_hotspot_scene_id = "";
+                            $pro_view_hotspot_scene_id = $id;
 
                             $hotspots = new Hotspots();
                             $hotspots->ath = $pro_view_hotspot_ath;
@@ -252,7 +258,6 @@ class ProductController extends Controller
                             $hotspots->linkedscene = $pro_view_hotspot_linkedscene;
                             $hotspots->scene_id = $pro_view_hotspot_scene_id;
                             $hotspots->save();
-
 
                         }
                         //若干个热点
@@ -264,7 +269,7 @@ class ProductController extends Controller
                                 $pro_view_hotspot_linkedscene = $pro_view_hotspot['@attributes']['linkedscene'];
                                 $pro_view_hotspot_hname = $pro_view_hotspot['@attributes']['hname'];
                                 $pro_view_hotspot_rotate = $pro_view_hotspot['@attributes']['rotate'];
-                                $pro_view_hotspot_scene_id = "";
+                                $pro_view_hotspot_scene_id = $id;
 
                                 $hotspots = new Hotspots();
                                 $hotspots->ath = $pro_view_hotspot_ath;
@@ -292,7 +297,14 @@ class ProductController extends Controller
                         $scene->title = $scene_title;
                         $scene->thumburl = $scene_thumburl;
                         $scene->pro_id = $scene_pro_id;
-                        $scene->save();
+
+                        if($scene->save())
+                        {
+                            $id =  \Yii::$app->db->getLastInsertId();
+                        }
+                        else{
+                            throw new \Exception("insert fail!");
+                        }
 
 
                         //hotspots库
@@ -307,7 +319,7 @@ class ProductController extends Controller
                                 $pro_view_hotspot_linkedscene = $pro_view_hotspot['@attributes']['linkedscene'];
                                 $pro_view_hotspot_hname = $pro_view_hotspot['@attributes']['hname'];
                                 $pro_view_hotspot_rotate = $pro_view_hotspot['@attributes']['rotate'];
-                                $pro_view_hotspot_scene_id = "";
+                                $pro_view_hotspot_scene_id = $id;
 
                                 $hotspots = new Hotspots();
                                 $hotspots->ath = $pro_view_hotspot_ath;
@@ -329,7 +341,7 @@ class ProductController extends Controller
                                     $pro_view_hotspot_linkedscene = $pro_view_hotspot['@attributes']['linkedscene'];
                                     $pro_view_hotspot_hname = $pro_view_hotspot['@attributes']['hname'];
                                     $pro_view_hotspot_rotate = $pro_view_hotspot['@attributes']['rotate'];
-                                    $pro_view_hotspot_scene_id = "";
+                                    $pro_view_hotspot_scene_id = $id;
 
                                     $hotspots = new Hotspots();
                                     $hotspots->ath = $pro_view_hotspot_ath;
@@ -338,7 +350,6 @@ class ProductController extends Controller
                                     $hotspots->rotate = $pro_view_hotspot_rotate;
                                     $hotspots->linkedscene = $pro_view_hotspot_linkedscene;
                                     $hotspots->scene_id = $pro_view_hotspot_scene_id;
-
                                     $hotspots->save();
                                 }
                             }
@@ -361,7 +372,6 @@ class ProductController extends Controller
         $append_xml = substr($c,strlen($xml_head));
         var_dump($append_xml);
         //同时生成edit.xml;
-
 
     }
 
@@ -409,8 +419,7 @@ class ProductController extends Controller
                 }
             }
         }
-
-
+        
     }
 
     //获取XML （json数据）
