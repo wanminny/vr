@@ -126,13 +126,6 @@ EOF"));
         echo $this->redis->get("aa");
     }
 
-
-    //编辑XML
-    public function editXml()
-    {
-
-    }
-
     //保存XML
     public function saveXml()
     {

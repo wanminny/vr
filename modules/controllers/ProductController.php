@@ -10,6 +10,10 @@ use yii\data\Pagination;
 //use crazyfd\qiniu\Qiniu;
 use app\common\libs\Qiniu;
 use app\modules\controllers\CommonController;
+use app\models\Scene;
+use app\models\view;
+use app\models\Hotspots;
+
 
 class ProductController extends CommonController
 {
@@ -179,26 +183,9 @@ var_dump($image,file_exists($image),$command);
         return $values;
     }
 
-    //test
-    public function actionTest()
-    {
-        $demo = \Yii::$app->basePath.\Yii::$app->params['xml_path'];
-        $xml = file_get_contents($demo);
-
-        $demo =  $this->xmlToArray($xml);
-        var_dump($demo);
-//        $arr = XML2Array::createArray($xml);
-        $a = Array2XML::createXml("krpano",$demo);
-//        var_dump($a);die;
-        $c =$a->saveXML($a);
-        var_dump($c);
-
-    }
-
     //根据生成的tour.xml -> tour_edit.xml
     public function actionConv($proId)
     {
-        $proId = "";
         //入库
         $xml_path = \Yii::$app->basePath.\Yii::$app->params['xml_path'];
         $xml = file_get_contents($xml_path);
@@ -210,8 +197,6 @@ var_dump($image,file_exists($image),$command);
         try{
             if(is_array($demo))
             {
-
-
                 //scene库
                 $scene = $demo['scene'];
                 //只有一个场景
@@ -222,6 +207,9 @@ var_dump($image,file_exists($image),$command);
                     $scene_title = $scene['@attributes']['title'];
                     $scene_thumburl = $scene['@attributes']['thumburl'];
                     $scene_pro_id = $proId;
+
+                    $scene = new Scene();
+
 
                 }
                 else{
@@ -300,9 +288,6 @@ var_dump($image,file_exists($image),$command);
         $productid = Yii::$app->request->get("productid");
         $model = Product::find()->where('productid = :id', [':id' => $productid])->one();
 
-
-//        var_dump($_POST,$_FILES);DIE;
-
         if (Yii::$app->request->isPost) {
             $post = Yii::$app->request->post();
             $qiniu = new Qiniu(Product::AK, Product::SK, Product::DOMAIN, Product::BUCKET);
@@ -376,8 +361,5 @@ var_dump($image,file_exists($image),$command);
         Product::deleteAll('productid = :pid', [':pid' => $productid]);
         return $this->redirect(['product/list']);
     }
-
-
-
 
 }

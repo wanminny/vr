@@ -14,8 +14,6 @@ $config = [
         ],
     ],
 
-
-
     'components' => [
 //        'urlManager' => [
 //            // Disable index.php
@@ -24,14 +22,6 @@ $config = [
 //            'enablePrettyUrl' => true,
 //            'rules' => array(
 //            ),
-//        ],
-
-//        'urlManager' => [
-//            'enablePrettyUrl' => true,
-//            'showScriptName' => false,
-//            'rules' => [
-//
-//            ],
 //        ],
         'redis' => [
             'class' => 'yii\redis\Connection',
@@ -45,14 +35,7 @@ $config = [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             'useFileTransport' => false,
-//            'transport' => [
-//                'class' => 'Swift_SmtpTransport',
-//                'host' => 'smtp.163.com',
-//                'username' => 'imooc_shop@163.com',
-//                'password' => 'imooc123',
-//                'port' => '994',
-//                'encryption' => 'ssl',
-//            ],
+
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.163.com',
@@ -61,9 +44,7 @@ $config = [
                 'port' => '994',
                 'encryption' => 'ssl',
             ],
-
         ],
-
         'i18n' => [
             'translations' => [
                 'app*' => [
@@ -90,13 +71,6 @@ $config = [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
-        ],
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
