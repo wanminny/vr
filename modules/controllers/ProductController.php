@@ -245,7 +245,8 @@ var_dump( $view->hlookat, $view->vlookat, $view->scene_id);
                     }
 //echo 111;die;
                     //hotspots库
-                    $pro_view_hotspot = isset($demo['scene']['view']['hotspot'])?$demo['scene']['view']['hotspot']:'';
+                    $pro_view_hotspot = isset($demo['scene']['hotspot'])?$demo['scene']['hotspot']:'';
+                    var_dump($pro_view_hotspot);die;
 //                    $pro_view_hotspot = isset($scene['hotspot'])?$scene['hotspot']:'';
                     if(is_array($pro_view_hotspot))
                     {
@@ -338,7 +339,7 @@ var_dump( $view->hlookat, $view->vlookat, $view->scene_id);
 
                         //hotspots库
 //                        $pro_view_hotspot = $scene['hotspot'];
-                        $pro_view_hotspot = isset($demo['scene']['view']['hotspot'])?$demo['scene']['view']['hotspot']:'';
+                        $pro_view_hotspot = isset($demo['scene']['hotspot'])?$demo['scene']['hotspot']:'';
                         if(is_array($pro_view_hotspot))
                         {
                             //只有一个热点
