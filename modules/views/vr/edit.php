@@ -54,7 +54,7 @@
 
 
 <script src="http://cdn.bootcss.com/jquery/2.0.0/jquery.js"></script>
-<script type="text/javascript" src="vtour1/tour.js"></script>
+<script type="text/javascript" src="vtour/tour.js"></script>
 
 <div id="title" style="width:100%; height:20px; padding:5px; font-size:16px;"><b>优视全景 - 设置场景</b></div>
 <div id="pano" style="width:100%; height:95%;">
@@ -69,7 +69,7 @@
     </noscript>
     <script type="text/javascript">
 
-        var base_path = <?= $pid;?>+"/vtour/";
+        var base_path = "vtour/";
         var swf_path = base_path+"tour.swf";
         var xml_path = base_path+"tour_editor.xml";
 

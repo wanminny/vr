@@ -257,7 +257,7 @@ class ProductController extends Controller
                             $view->hlookat = $view_hlookat;
                             $view->vlookat = $view_vlookat;
                             $view->scene_id = $scene_id;
-                            var_dump( $view->hlookat, $view->vlookat, $view->scene_id);
+//                            var_dump( $view->hlookat, $view->vlookat, $view->scene_id);
                             $view->save(false);
                         }
                     }
@@ -420,18 +420,32 @@ class ProductController extends Controller
 
         $xml_head = '<?xml version="1.0" encoding="UTF-8"?>';
         $append_xml = substr($c,strlen($xml_head));
-        var_dump($append_xml);
-        //同时生成edit.xml;
-
+        //scene 场景节点XML 结构
+        $redis = \Yii::$app->redis;
+        $redis->set($proId,$append_xml);
+        $this->genEditxml($proId);
     }
 
-    //生成editxml文件
-    public function genEditxml()
+    //生成editxml文件 and tour.xml
+    public function genEditxml($pid)
     {
-        $xml_mutable = "";
+       $redis =  Yii::$app->redis;
+       $xml =  $redis->get($pid);
+
+       //追加SCENE场景文件形成TOUR.XML
+        $this->appendXml($xml,"tour.xml");
+        //追加SCENE场景文件形成EDIT.XML
+        $this->appendXml($xml,"tour_editor.xml");
+
+    }
+
+    //最近生成文件；
+    private function appendXml($xml,$filename)
+    {
 
 
     }
+
 
     /// 保存设置
     public function actionSave()

@@ -23,14 +23,15 @@
     </style>
 
 
-<script src="vtour1/tour.js"></script>
+<script src="vtour/tour.js"></script>
 
 <div id="pano" style="width:100%;height:100%;">
     <noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
     <script>
-        var base_path = <?= $pid;?>+"/vtour/";
+        var base_path = "vtour/";
         var swf_path = base_path+"tour.swf";
         var xml_path = base_path+"tour.xml";
+//        alert(xml_path);
         embedpano({swf:swf_path, xml:xml_path, target:"pano", html5:"auto", mobilescale:1.0, passQueryParameters:true});
 
     </script>

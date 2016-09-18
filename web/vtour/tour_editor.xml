@@ -1,0 +1,121 @@
+<krpano version="1.19" title="优视全景 - 设置场景" debugmode="true">
+
+    <include url="%SWFPATH%/skin/vtourskin.xml" />
+
+    <!-- 自动旋转 -->
+    <autorotate enabled="true"
+                waittime="3.0"
+                speed="3.0"
+                horizon="0.0"
+                tofov="120.0"
+    />
+
+
+    <!--
+        For an alternative skin design either change the <skin_settings> values
+        from above or optionally include one of the predefined designs from below.
+    -->
+    <!-- <include url="skin/vtourskin_design_flat_light.xml"  /> -->
+    <!-- <include url="skin/vtourskin_design_glass.xml"       /> -->
+    <!-- <include url="skin/vtourskin_design_ultra_light.xml" /> -->
+    <!-- <include url="skin/vtourskin_design_117.xml"         /> -->
+    <!-- <include url="skin/vtourskin_design_117round.xml"    /> -->
+    <!-- <include url="skin/vtourskin_design_black.xml"       /> -->
+
+    <!-- startup action - load the first scene -->
+    <action name="startup" autorun="onstart">
+        if(startscene === null OR !scene[get(startscene)], copy(startscene,scene[0].name); );
+        loadscene(get(startscene), null, MERGE);
+        if(startactions !== null, startactions() );
+    </action>
+
+
+
+    <!--
+        For an alternative skin design either change the <skin_settings> values
+        from above or optionally include one of the predefined designs from below.
+    -->
+    <!-- <include url="skin/vtourskin_design_flat_light.xml"  /> -->
+    <!-- <include url="skin/vtourskin_design_glass.xml"       /> -->
+    <!-- <include url="skin/vtourskin_design_ultra_light.xml" /> -->
+    <!-- <include url="skin/vtourskin_design_117.xml"         /> -->
+    <!-- <include url="skin/vtourskin_design_117round.xml"    /> -->
+    <!-- <include url="skin/vtourskin_design_black.xml"       /> -->
+
+    <!-- startup action - load the first scene -->
+    <action name="startup" autorun="onstart">
+        if(startscene === null OR !scene[get(startscene)], copy(startscene,scene[0].name); );
+        loadscene(get(startscene), null, MERGE);
+        if(startactions !== null, startactions() );
+    </action>
+
+
+    <!-- scene缩略列表弹窗 -->
+    <layer name="scene_thumb_container" style="container" width="290" height="240" bgcapture="false" bgalpha="0.7" align="center" visible="false">
+        <!-- 标题 -->
+        <layer name="scene_thumb_title" style="text" align="top" y="5" width="100%" css="text-align:center;color:#ffffff;font-weight:bold;font-size:14px;" html="为热点设置跳转场景" />
+        <!-- the scrolling container -->
+        <layer name="scroll_container" type="container" align="topleft" x="0" y="32" width="280" height="172">
+            <!-- the scrolling content -->
+            <layer name="scroll_content" url="%SWFPATH%/plugins/scrollarea.swf" alturl="%SWFPATH%/plugins/scrollarea.js" mwheel="true" direction="v" overscroll="0" align="lefttop" width="100%" height="112" onscroll="if(hoverflow GT 0, div(yp,toverflow,hoverflow);Math.min(yp,1);Math.max(yp,0); copy(th,layer[scrollbar].pixelheight);sub(th,layer[scrollup].pixelheight);sub(th,layer[scrolldown].pixelheight);sub(th,layer[scrollslider].pixelheight); mul(yp,th);add(yp,layer[scrollup].pixelheight); copy(layer[scrollslider].y,yp); );">
+
+
+
+                <layer name="s_185374" style="subbtn" width="240" height="50" y="1" x="10" bgcolor="0x000000" bgborder="1 0xffffff 1" bgalpha="0.5" onclick="select_scene();">
+                    <layer name="s_185374_p" type="image" url="http://cdn.useevr.cn/5/201696QYGHMR/thumb.jpg" align="left" width="40" height="40" x="5" />
+                    <layer name="s_185374_t" style="text" width="190" align="left" x="50"  css="text-align:center;color:#ffffff;" html="test111"/>
+                </layer>
+                0
+
+                <layer name="s_196929" style="subbtn" width="240" height="50" y="61" x="10" bgcolor="0x000000" bgborder="1 0xffffff 1" bgalpha="0.5" onclick="select_scene();">
+                    <layer name="s_196929_p" type="image" url="http://cdn.useevr.cn/5/201696KRsjNr/thumb.jpg" align="left" width="40" height="40" x="5" />
+                    <layer name="s_196929_t" style="text" width="190" align="left" x="50"  css="text-align:center;color:#ffffff;" html="fsad"/>
+                </layer>
+                1
+
+
+
+            </layer>
+            <!-- the scrollbar -->
+            <layer name="scrollbar" type="container" bgcolor="0x000000" bgalpha="0.25" align="righttop" x="0" y="0" width="19" height="100%">
+                <layer name="scrollup"     url="skin/dirbutton.png"    align="righttop"    x="19" rotate="-90" crop="0|0|19|19" onovercrop="0|19|19|19" ondowncrop="0|38|19|19" ondown="asyncloop(pressed, layer[scroll_content].scrollby(0,+1));" />
+                <layer name="scrolldown"   url="skin/dirbutton.png"    align="rightbottom" x="19" rotate="+90" crop="0|0|19|19" onovercrop="0|19|19|19" ondowncrop="0|38|19|19" ondown="asyncloop(pressed, layer[scroll_content].scrollby(0,-1));" />
+                <layer name="scrollslider" url="skin/sliderbutton.png" align="righttop" x="0" y="19" crop="0|0|19|19" onovercrop="0|19|19|19" ondowncrop="0|38|19|19" ondown="if(layer[scroll_content].hoverflow GT 0, copy(cy,y);copy(sy,mouse.stagey);dragging(); );" dragging="if(pressed, sub(dy,mouse.stagey,sy);add(ny,cy,dy);Math.max(ny,layer[scrollup].pixelheight); copy(th,layer[scrollbar].pixelheight);sub(th,layer[scrolldown].pixelheight);sub(th,layer[scrollslider].pixelheight);Math.min(ny,th); copy(y,ny); sub(ny,layer[scrollup].pixelheight);sub(th,layer[scrollslider].pixelheight);div(ny,th); copy(fh,layer[scroll_content].hoverflow); mul(fh,-1); mul(ny,fh); layer[scroll_content].stopscrolling(); copy(layer[scroll_content].y,ny); delayedcall(0,dragging()); );" />
+            </layer>
+        </layer>
+        <!-- 按钮 -->
+        <layer name="btn_con_link_container" style="subbtn" width="130" auheight="true" align="topleft" x="10" y="210" enabled="false" onclick="confirm_linkded_scene();">
+            <layer name="btn_con_link_scene" style="text" html="确定" />
+        </layer>
+        <layer name="btn_can_link_scene_p" style="subbtn" width="130" align="topright" x="10" y="210" onclick="cancel_add_hotspot();">
+            <layer name="btn_can_link_scene" style="text" html="取消" />
+        </layer>
+    </layer>
+
+    <include url="%SWFPATH%/skin/vtoureditor.xml" />
+
+    <scene name="s_185374" title="test111"   onstart="activatespot(99)"  thumburl="http://cdn.useevr.cn/5/201696QYGHMR/thumb.jpg" lat="" lng="" heading="">
+
+        <!-- the floor platform -->
+        <hotspot zorder="1" distorted="true" enabled="false"
+                 url="http://cdn.useevr.cn/5/logo.png" width="250" height="250" alpha="1"
+                 rx="-90" ty="5000" scale="5"
+                />
+
+        <view hlookat="4141.23234896745" vlookat="0.964823506959051" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+        <preview url="http://cdn.useevr.cn/5/201696QYGHMR/preview.jpg" />
+        <image>
+            <cube url="http://cdn.useevr.cn/5/201696QYGHMR/pano_%s.jpg" />
+            <cube url="http://cdn.useevr.cn/5/201696QYGHMR/mobile/pano_%s.jpg" devices="mobile" />
+        </image>
+        <hotspot name="hotspot_122" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="50.694235550656344" atv="4.3413875820026115" rotate="0" linkedscene="s_196929" />
+        <hotspot name="hotspot_1222" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="25.54111622172229" atv="9.142060283079347" rotate="0" linkedscene="s_185374" />
+        <hotspot name="hotspot_12222" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="-172.72417555572449" atv="2.6038018015612883" rotate="0" linkedscene="s_196929" />
+
+        <hotspot name="" url="" distorted="true" depth="" scale="" ath="" atv="" rotate="0"/>
+        <hotspot name="pic_o_1as21tncv5sk1vvpnv81r0rdja7" url="http://cdn.useevr.cn/user-dir/201697jaWt5D.jpg" distorted="true" depth="2000" scale="1.0933333333333333" ath="-156.23741710804882" atv="-2.0243112713554323" rotate="28"/>
+
+    </scene>
+    
+
+</krpano>
