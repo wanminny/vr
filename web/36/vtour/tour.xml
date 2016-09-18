@@ -42,11 +42,13 @@
 
 		<view hlookat="10" vlookat="10" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 		<preview url="http://cdn.useevr.cn/5/201696QYGHMR/preview.jpg" />
-        <hotspot zorder="1" distorted="true" enabled="false"
-                 url="http://cdn.useevr.cn/5/logo.png" width="250" height="250" alpha="1"
-                 rx="-90" ty="5000" scale="5"
-                />
-		<image>
+        <!--<hotspot zorder="1" distorted="true" enabled="false"-->
+                 <!--url="http://cdn.useevr.cn/5/logo.png" width="250" height="250" alpha="1"-->
+                 <!--rx="-90" ty="5000" scale="5"-->
+                <!--/>-->
+        <hotspot name="hotspot_122" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="50.694235550656344" atv="4.3413875820026115" rotate="0" linkedscene="s_196929" />
+
+        <image>
 			<cube url="http://cdn.useevr.cn/5/201696QYGHMR/pano_%s.jpg" />
 			<cube url="http://cdn.useevr.cn/5/201696QYGHMR/mobile/pano_%s.jpg" devices="mobile" />
 		</image>
