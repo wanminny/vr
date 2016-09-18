@@ -274,7 +274,7 @@ class ProductController extends Controller
                             $hotspots->rotate = $pro_view_hotspot_rotate;
                             $hotspots->linkedscene = $pro_view_hotspot_linkedscene;
                             $hotspots->scene_id = $pro_view_hotspot_scene_id;
-                            $hotspots->save();
+                            $hotspots->save(false);
 
                         }
                         //若干个热点
@@ -296,7 +296,7 @@ class ProductController extends Controller
                                 $hotspots->rotate = $pro_view_hotspot_rotate;
                                 $hotspots->linkedscene = $pro_view_hotspot_linkedscene;
                                 $hotspots->scene_id = $pro_view_hotspot_scene_id;
-                                $hotspots->save();
+                                $hotspots->save(false);
                             }
                         }
                     }
@@ -368,7 +368,7 @@ class ProductController extends Controller
                                 $hotspots->linkedscene = $pro_view_hotspot_linkedscene;
                                 $hotspots->scene_id = $pro_view_hotspot_scene_id;
 
-                                $hotspots->save();
+                                $hotspots->save(false);
 
                             }
                             //若干个热点
@@ -389,7 +389,7 @@ class ProductController extends Controller
                                     $hotspots->rotate = $pro_view_hotspot_rotate;
                                     $hotspots->linkedscene = $pro_view_hotspot_linkedscene;
                                     $hotspots->scene_id = $pro_view_hotspot_scene_id;
-                                    $hotspots->save();
+                                    $hotspots->save(false);
                                 }
                             }
                         }
