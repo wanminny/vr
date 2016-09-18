@@ -188,6 +188,8 @@ class ProductController extends Controller
         $xml = file_get_contents($xml_path);
         $demo =  $this->xmlToArray($xml);
 
+//        var_dump($demo['scene']['view']);
+//        die;
 //        var_dump($demo);die;
         $connection = \Yii::$app->db;
         $transaction = $connection->beginTransaction();
@@ -219,10 +221,11 @@ class ProductController extends Controller
                         var_dump($scene->getErrors());
                         throw new \Exception("insert fail!");
                     }
-                    var_dump($scene);die;
+//                    var_dump($scene);die;
 
                     //views库
-                    $pro_view = $scene['view'];
+//                    $pro_view = $scene['view'];
+                    $pro_view = $demo['scene']['view'];
                     if($pro_view && is_array($pro_view))
                     {
                         $pro_view_attr = $pro_view['@attributes'];
@@ -238,9 +241,10 @@ class ProductController extends Controller
                             $view->scene_id = $scene_id;
                         }
                     }
-
+//echo 111;die;
                     //hotspots库
-                    $pro_view_hotspot = isset($scene['hotspot'])?$scene['hotspot']:'';
+                    $pro_view_hotspot = isset($demo['scene']['view']['hotspot'])?$demo['scene']['view']['hotspot']:'';
+//                    $pro_view_hotspot = isset($scene['hotspot'])?$scene['hotspot']:'';
                     if(is_array($pro_view_hotspot))
                     {
                         //只有一个热点
@@ -311,7 +315,8 @@ class ProductController extends Controller
                         }
 
                         //views库
-                        $pro_view = $scene['view'];
+                        $pro_view = $demo['scene']['view'];
+//                        $pro_view = $scene['view'];
                         if($pro_view && is_array($pro_view))
                         {
                             $pro_view_attr = $pro_view['@attributes'];
@@ -329,7 +334,8 @@ class ProductController extends Controller
                         }
 
                         //hotspots库
-                        $pro_view_hotspot = $scene['hotspot'];
+//                        $pro_view_hotspot = $scene['hotspot'];
+                        $pro_view_hotspot = isset($demo['scene']['view']['hotspot'])?$demo['scene']['view']['hotspot']:'';
                         if(is_array($pro_view_hotspot))
                         {
                             //只有一个热点
