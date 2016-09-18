@@ -182,7 +182,7 @@ class ProductController extends Controller
     //根据生成的tour.xml -> tour_edit.xml
     public function actionConv($proId = 0)
     {
-        $proId = "";
+
         //入库
         $xml_path = \Yii::$app->basePath.\Yii::$app->params['xml_path'];
         $xml = file_get_contents($xml_path);
