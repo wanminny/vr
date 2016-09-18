@@ -57,11 +57,10 @@ class Scene extends \yii\db\ActiveRecord
 
         $where = " and prj.productid=".$proId;
         $sql = "select scene.*,view.*,hotspots.* from leju_product as prj
-                RIGHT  join leju_scene as scene on prj.productid = scene.pro_id ".$where."
-                RIGHT  JOIN  leju_view as view on view.scene_id =  scene.id
-                RIGHT  JOIN  leju_hotspots as hotspots on hotspots.scene_id = scene.id";
-
-        $data =  Scene::findBySql($sql);
+                  join leju_scene as scene on prj.productid = scene.pro_id ".$where."
+                  JOIN  leju_view as view on view.scene_id =  scene.id
+                  JOIN  leju_hotspots as hotspots on hotspots.scene_id = scene.id";
+        $data =  Scene::findBySql($sql)->asArray()->all();
 
         return json_encode($data);
     }
@@ -70,8 +69,9 @@ class Scene extends \yii\db\ActiveRecord
     public static function getSceneName($proId)
     {
 
-       $data =  Scene::findBySql("select name,id from leju_scene where pro_id =".$proId);
-        return $data;
+       $data =  Scene::findBySql("select name,id from leju_scene where pro_id =".$proId)->asArray()->all();
+
+       return $data;
     }
 
 

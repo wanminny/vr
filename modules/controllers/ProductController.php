@@ -178,7 +178,7 @@ class ProductController extends Controller
             else {
                 @unlink($this->upload_path . $pics_name);
             }
-            
+
             @unlink($this->upload_path . $cover_name);
 
             return  "ok!";
@@ -261,7 +261,6 @@ class ProductController extends Controller
                             $view->save(false);
                         }
                     }
-//echo 111;die;
                     //hotspots库
                     $pro_view_hotspot = isset($demo['scene']['hotspot'])?$demo['scene']['hotspot']:'';
 //                    var_dump($pro_view_hotspot);die;
@@ -474,9 +473,9 @@ class ProductController extends Controller
     }
 
     //获取XML （json数据）
-    public function actionGetxml($proId = 0)
+    public function actionGetxml()
     {
-        $proId = \Yii::$app->request->get('proid');
+        $proId = \Yii::$app->request->get('pid');
 
         if($proId)
         {
