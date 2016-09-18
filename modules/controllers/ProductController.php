@@ -178,6 +178,8 @@ class ProductController extends Controller
             else {
                 @unlink($this->upload_path . $pics_name);
             }
+            
+            @unlink($this->upload_path . $cover_name);
 
             return  "ok!";
         }
@@ -474,6 +476,8 @@ class ProductController extends Controller
     //获取XML （json数据）
     public function actionGetxml($proId = 0)
     {
+        $proId = \Yii::$app->request->get('proid');
+
         if($proId)
         {
             $rlt = Scene::getSeneInfo($proId);
