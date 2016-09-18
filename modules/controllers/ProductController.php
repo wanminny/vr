@@ -197,23 +197,6 @@ class ProductController extends Controller
             {
                 //scene库
                 $scene = $demo['scene'];
-                //views库
-                $pro_view = $scene['view'];
-                if($pro_view && is_array($pro_view))
-                {
-                    $pro_view_attr = $pro_view['@attributes'];
-                    if(is_array($pro_view_attr) && count($pro_view_attr))
-                    {
-                        $view_hlookat = $pro_view_attr['hlookat'];
-                        $view_vlookat =  $pro_view_attr['vlookat'];
-                        $scene_id = "";
-
-                        $view = new View();
-                        $view->hlookat = $view_hlookat;
-                        $view->vlookat = $view_vlookat;
-                        $view->scene_id = $scene_id;
-                    }
-                }
                 //只有一个场景
                 if(isset($scene['@attributes']))
                 {
@@ -235,6 +218,24 @@ class ProductController extends Controller
                     else{
                         var_dump($scene->getErrors());
                         throw new \Exception("insert fail!");
+                    }
+
+                    //views库
+                    $pro_view = $scene['view'];
+                    if($pro_view && is_array($pro_view))
+                    {
+                        $pro_view_attr = $pro_view['@attributes'];
+                        if(is_array($pro_view_attr) && count($pro_view_attr))
+                        {
+                            $view_hlookat = $pro_view_attr['hlookat'];
+                            $view_vlookat =  $pro_view_attr['vlookat'];
+                            $scene_id = $id;
+
+                            $view = new View();
+                            $view->hlookat = $view_hlookat;
+                            $view->vlookat = $view_vlookat;
+                            $view->scene_id = $scene_id;
+                        }
                     }
 
                     //hotspots库
@@ -308,6 +309,23 @@ class ProductController extends Controller
                             throw new \Exception("insert fail!");
                         }
 
+                        //views库
+                        $pro_view = $scene['view'];
+                        if($pro_view && is_array($pro_view))
+                        {
+                            $pro_view_attr = $pro_view['@attributes'];
+                            if(is_array($pro_view_attr) && count($pro_view_attr))
+                            {
+                                $view_hlookat = $pro_view_attr['hlookat'];
+                                $view_vlookat =  $pro_view_attr['vlookat'];
+                                $scene_id = $id;
+
+                                $view = new View();
+                                $view->hlookat = $view_hlookat;
+                                $view->vlookat = $view_vlookat;
+                                $view->scene_id = $scene_id;
+                            }
+                        }
 
                         //hotspots库
                         $pro_view_hotspot = $scene['hotspot'];
