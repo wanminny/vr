@@ -116,6 +116,7 @@ class ProductController extends Controller
         ///获取图片
         $pro = new Product();
         $info = $pro->getProInfoById($proId);
+        $pic_arr = [];
         if($info)
         {
             $cover_name = $info['cover_name'];
@@ -163,6 +164,11 @@ class ProductController extends Controller
         {
             //todb and genxml
             $this->actionConv($proId);
+            //删除文件
+            if(is_array($pic_arr) && count($pic_arr))
+            {
+                @unlink($this->upload_path.$pics_name);
+            }
             return  "ok!";
         }
         else{
@@ -239,7 +245,7 @@ class ProductController extends Controller
                             $view->hlookat = $view_hlookat;
                             $view->vlookat = $view_vlookat;
                             $view->scene_id = $scene_id;
-var_dump( $view->hlookat, $view->vlookat, $view->scene_id);
+                            var_dump( $view->hlookat, $view->vlookat, $view->scene_id);
                             $view->save(false);
                         }
                     }
