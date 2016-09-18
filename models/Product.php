@@ -74,5 +74,4 @@ class Product extends ActiveRecord
     }
 
 
-
 }

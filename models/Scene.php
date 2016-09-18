@@ -68,7 +68,6 @@ class Scene extends \yii\db\ActiveRecord
     //获取场景的name id 信息 有可能多个；
     public static function getSceneName($proId)
     {
-
        $data =  Scene::findBySql("select name,id from leju_scene where pro_id =".$proId)->asArray()->all();
 
        return $data;
@@ -92,6 +91,14 @@ class Scene extends \yii\db\ActiveRecord
             $model->save();
         }
 
+    }
+
+    //获取工程ID的对应的场景XML
+    public static function getScenexml($proId)
+    {
+        $redis =  Yii::$app->redis;
+        $xml =  $redis->get($proId);
+        return $xml;
     }
 
 }

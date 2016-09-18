@@ -56,22 +56,14 @@
 	</action>
 
 
-    <scene name="s_185374" title="test"  onstart="" thumburl="http://cdn.useevr.cn/5/201696QYGHMR/thumb.jpg" lat="" lng="" heading="">
+    <!--<scene name="s_185374" title="zzz"  onstart="" thumburl="http://cdn.useevr.cn/5/201696QYGHMR/thumb.jpg" lat="" lng="" heading="">-->
 
-        <!-- the floor platform -->
-        <!--<hotspot zorder="1" distorted="true" enabled="false"
-                 url="http://cdn.useevr.cn/5/logo.png" width="250" height="250" alpha="1"
-                 rx="-90" ty="5000" scale="5"
-        />-->
-
-        <view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
-        <preview url="http://cdn.useevr.cn/5/201696QYGHMR/preview.jpg" />
-        <image>
-            <cube url="http://cdn.useevr.cn/5/201696QYGHMR/pano_%s.jpg" />
-            <cube url="http://cdn.useevr.cn/5/201696QYGHMR/mobile/pano_%s.jpg" devices="mobile" />
-        </image>
-
-
-    </scene>
+        <!--<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />-->
+        <!--<preview url="http://cdn.useevr.cn/5/201696QYGHMR/preview.jpg" />-->
+        <!--<image>-->
+            <!--<cube url="http://cdn.useevr.cn/5/201696QYGHMR/pano_%s.jpg" />-->
+            <!--<cube url="http://cdn.useevr.cn/5/201696QYGHMR/mobile/pano_%s.jpg" devices="mobile" />-->
+        <!--</image>-->
+    <!--</scene>-->
 
 </krpano>

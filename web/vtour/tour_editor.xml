@@ -94,28 +94,15 @@
 
     <include url="%SWFPATH%/skin/vtoureditor.xml" />
 
-    <scene name="s_185374" title="test111"   onstart="activatespot(99)"  thumburl="http://cdn.useevr.cn/5/201696QYGHMR/thumb.jpg" lat="" lng="" heading="">
+    <!--<scene name="s_185374" title="zzz"  onstart="" thumburl="http://cdn.useevr.cn/5/201696QYGHMR/thumb.jpg" lat="" lng="" heading="">-->
 
-        <!-- the floor platform -->
-        <hotspot zorder="1" distorted="true" enabled="false"
-                 url="http://cdn.useevr.cn/5/logo.png" width="250" height="250" alpha="1"
-                 rx="-90" ty="5000" scale="5"
-                />
+        <!--<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />-->
+        <!--<preview url="http://cdn.useevr.cn/5/201696QYGHMR/preview.jpg" />-->
+        <!--<image>-->
+            <!--<cube url="http://cdn.useevr.cn/5/201696QYGHMR/pano_%s.jpg" />-->
+            <!--<cube url="http://cdn.useevr.cn/5/201696QYGHMR/mobile/pano_%s.jpg" devices="mobile" />-->
+        <!--</image>-->
+    <!--</scene>-->
 
-        <view hlookat="4141.23234896745" vlookat="0.964823506959051" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
-        <preview url="http://cdn.useevr.cn/5/201696QYGHMR/preview.jpg" />
-        <image>
-            <cube url="http://cdn.useevr.cn/5/201696QYGHMR/pano_%s.jpg" />
-            <cube url="http://cdn.useevr.cn/5/201696QYGHMR/mobile/pano_%s.jpg" devices="mobile" />
-        </image>
-        <hotspot name="hotspot_122" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="50.694235550656344" atv="4.3413875820026115" rotate="0" linkedscene="s_196929" />
-        <hotspot name="hotspot_1222" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="25.54111622172229" atv="9.142060283079347" rotate="0" linkedscene="s_185374" />
-        <hotspot name="hotspot_12222" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="-172.72417555572449" atv="2.6038018015612883" rotate="0" linkedscene="s_196929" />
-
-        <hotspot name="" url="" distorted="true" depth="" scale="" ath="" atv="" rotate="0"/>
-        <hotspot name="pic_o_1as21tncv5sk1vvpnv81r0rdja7" url="http://cdn.useevr.cn/user-dir/201697jaWt5D.jpg" distorted="true" depth="2000" scale="1.0933333333333333" ath="-156.23741710804882" atv="-2.0243112713554323" rotate="28"/>
-
-    </scene>
-    
 
 </krpano>

@@ -423,15 +423,13 @@ class ProductController extends Controller
         //scene 场景节点XML 结构
         $redis = \Yii::$app->redis;
         $redis->set($proId,$append_xml);
-        $this->genEditxml($proId);
+//        $this->genEditxml($proId);
     }
 
     //生成editxml文件 and tour.xml
     public function genEditxml($pid)
     {
-       $redis =  Yii::$app->redis;
-       $xml =  $redis->get($pid);
-
+       $xml = Scene::getSeneInfo($pid);
        //追加SCENE场景文件形成TOUR.XML
         $this->appendXml($xml,"tour.xml");
         //追加SCENE场景文件形成EDIT.XML

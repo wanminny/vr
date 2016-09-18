@@ -5,6 +5,7 @@
  * Date: 16/9/9
  * Time: 上午10:58
  */
+use app\models\Scene;
 
 ?>
 
@@ -67,6 +68,19 @@
             </tr>
         </table>
     </noscript>
+
+    <?php
+
+        $xml = Scene::getSeneInfo($pid);
+        //动态生成文件内容；
+        $filename = \Yii::$app->params['xml_path'];
+        $fp = fopen($filename, 'ab');
+        $int = -strlen("</krpano>");
+        fseek($fp, $int,SEEK_END); // int 为你想写的位置距离文件开头的位置
+        fwrite($fp, $xml);
+
+    ?>
+
     <script type="text/javascript">
 
         var base_path = "vtour/";

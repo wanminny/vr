@@ -6,6 +6,9 @@
  * Time: 上午10:58
  */
 
+
+use app\models\Scene;
+
 ?>
 
     <title>krpano - jiema1</title>
@@ -27,11 +30,25 @@
 
 <div id="pano" style="width:100%;height:100%;">
     <noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
+
+    <?php
+
+        $xml = Scene::getSeneInfo($pid);
+
+        //动态生成文件内容；
+        $filename = \Yii::$app->params['xml_path'];
+        $fp = fopen($filename, 'ab');
+        $int =  -strlen("</krpano>");
+        fseek($fp, $int,SEEK_END); // int 为你想写的位置距离文件开头的位置
+        fwrite($fp, $xml);
+
+    ?>
+
     <script>
         var base_path = "vtour/";
         var swf_path = base_path+"tour.swf";
         var xml_path = base_path+"tour.xml";
-//        alert(xml_path);
+
         embedpano({swf:swf_path, xml:xml_path, target:"pano", html5:"auto", mobilescale:1.0, passQueryParameters:true});
 
     </script>
