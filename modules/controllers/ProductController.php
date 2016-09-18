@@ -239,8 +239,8 @@ class ProductController extends Controller
                             $view->hlookat = $view_hlookat;
                             $view->vlookat = $view_vlookat;
                             $view->scene_id = $scene_id;
-
-                            $view->save();
+var_dump( $view->hlookat, $view->vlookat, $view->scene_id);
+                            $view->save(false);
                         }
                     }
 //echo 111;die;
@@ -332,7 +332,7 @@ class ProductController extends Controller
                                 $view->hlookat = $view_hlookat;
                                 $view->vlookat = $view_vlookat;
                                 $view->scene_id = $scene_id;
-                                $view->save();
+                                $view->save(false);
                             }
                         }
 
