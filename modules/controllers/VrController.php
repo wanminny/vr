@@ -10,9 +10,6 @@ namespace app\modules\controllers;
 
 use yii\web\Controller;
 
-use app\common\libs\lss\Array2XML;
-use app\common\libs\lss\XML2Array;
-
 
 class VrController extends CommonController
 {
@@ -53,16 +50,7 @@ class VrController extends CommonController
         }
     }
 
-
-    public function actionTest()
-    {
-
-        $redis = \Yii::$app->redis;
-        $redis->set("test","asdfsfafsd");
-        echo $redis->get("test");
-    }
-
-
+    
     public function actionUp1()
     {
         $path = $this->upload_path;

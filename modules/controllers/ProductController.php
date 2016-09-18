@@ -425,6 +425,14 @@ class ProductController extends Controller
 
     }
 
+    //生成editxml文件
+    public function genEditxml()
+    {
+        $xml_mutable = "";
+
+
+    }
+
     /// 保存设置
     public function actionSave()
     {
@@ -533,8 +541,6 @@ class ProductController extends Controller
 
                 }
             }
-
-
         }
         return $this->render('add', ['model' => $model, 'opts' => $list]);
 

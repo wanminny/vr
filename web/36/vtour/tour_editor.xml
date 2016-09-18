@@ -10,7 +10,6 @@
                 tofov="120.0"
     />
 
-
     <!--
         For an alternative skin design either change the <skin_settings> values
         from above or optionally include one of the predefined designs from below.
@@ -29,52 +28,6 @@
         if(startactions !== null, startactions() );
     </action>
 
-
-    <scene name="s_185374" title="test111"   onstart="activatespot(99)"  thumburl="http://cdn.useevr.cn/5/201696QYGHMR/thumb.jpg" lat="" lng="" heading="">
-
-        <!-- the floor platform -->
-        <hotspot zorder="1" distorted="true" enabled="false"
-                 url="http://cdn.useevr.cn/5/logo.png" width="250" height="250" alpha="1"
-                 rx="-90" ty="5000" scale="5"
-        />
-
-        <view hlookat="4141.23234896745" vlookat="0.964823506959051" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
-        <preview url="http://cdn.useevr.cn/5/201696QYGHMR/preview.jpg" />
-        <image>
-            <cube url="http://cdn.useevr.cn/5/201696QYGHMR/pano_%s.jpg" />
-            <cube url="http://cdn.useevr.cn/5/201696QYGHMR/mobile/pano_%s.jpg" devices="mobile" />
-        </image>
-        <hotspot name="hotspot_122" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="50.694235550656344" atv="4.3413875820026115" rotate="0" linkedscene="s_196929" />
-        <hotspot name="hotspot_1222" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="25.54111622172229" atv="9.142060283079347" rotate="0" linkedscene="s_185374" />
-        <hotspot name="hotspot_12222" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="-172.72417555572449" atv="2.6038018015612883" rotate="0" linkedscene="s_196929" />
-
-        <hotspot name="" url="" distorted="true" depth="" scale="" ath="" atv="" rotate="0"/>
-        <hotspot name="pic_o_1as21tncv5sk1vvpnv81r0rdja7" url="http://cdn.useevr.cn/user-dir/201697jaWt5D.jpg" distorted="true" depth="2000" scale="1.0933333333333333" ath="-156.23741710804882" atv="-2.0243112713554323" rotate="28"/>
-
-    </scene>
-    <scene name="s_196929" title="fsad"   onstart="activatespot(0)"  thumburl="http://cdn.useevr.cn/5/201696KRsjNr/thumb.jpg" lat="" lng="" heading="">
-
-        <!-- the floor platform -->
-        <hotspot zorder="1" distorted="true" enabled="false"
-                 url="http://cdn.useevr.cn/5/logo.png" width="250" height="250" alpha="1"
-                 rx="-90" ty="5000" scale="5"
-        />
-
-        <view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
-        <preview url="http://cdn.useevr.cn/5/201696KRsjNr/preview.jpg" />
-        <image>
-            <cube url="http://cdn.useevr.cn/5/201696KRsjNr/pano_%s.jpg" />
-            <cube url="http://cdn.useevr.cn/5/201696KRsjNr/mobile/pano_%s.jpg" devices="mobile" />
-        </image>
-        <hotspot name="hotspot_122222" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="91.08285485176604" atv="5.631949503111981" rotate="0" linkedscene="s_185374" />
-
-        <hotspot name="pic_o_1as220svi1vibidjaae9ub19kmc" url="http://cdn.useevr.cn/user-dir/2016974jDK85.jpg" distorted="true" depth="1000" scale="0.6800000000000002" ath="90.8560153420469" atv="-12.821081146983483" rotate="0"/>
-
-    </scene>
-
-
-
-
     <!--
         For an alternative skin design either change the <skin_settings> values
         from above or optionally include one of the predefined designs from below.
@@ -92,41 +45,6 @@
         loadscene(get(startscene), null, MERGE);
         if(startactions !== null, startactions() );
     </action>
-
-    <scene name="s_185374" title="test111"  onstart="activatespot(90)" thumburl="http://cdn.useevr.cn/5/201696QYGHMR/thumb.jpg" lat="" lng="" heading="">
-
-        <!-- the floor platform -->
-        <hotspot zorder="1" distorted="true" enabled="false"
-                 url="http://cdn.useevr.cn/5/logo.png" width="250" height="250" alpha="1"
-                 rx="-90" ty="5000" scale="5"
-        />
-
-        <view hlookat="4141.23234896745" vlookat="0.964823506959051" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
-        <preview url="http://cdn.useevr.cn/5/201696QYGHMR/preview.jpg" />
-        <image>
-            <cube url="http://cdn.useevr.cn/5/201696QYGHMR/pano_%s.jpg" />
-            <cube url="http://cdn.useevr.cn/5/201696QYGHMR/mobile/pano_%s.jpg" devices="mobile" />
-        </image>
-        <hotspot name="hotspot_122" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="50.694235550656344" atv="4.3413875820026115" rotate="0" linkedscene="s_196929" />
-        <hotspot name="hotspot_1222" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="25.54111622172229" atv="9.142060283079347" rotate="0" linkedscene="s_185374" />
-        <hotspot name="hotspot_12222" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="-172.72417555572449" atv="2.6038018015612883" rotate="0" linkedscene="s_196929" />
-    </scene>
-    <scene name="s_196929" title="fsad"  onstart="activatespot(90)" thumburl="http://cdn.useevr.cn/5/201696KRsjNr/thumb.jpg" lat="" lng="" heading="">
-
-        <!-- the floor platform -->
-        <hotspot zorder="1" distorted="true" enabled="false"
-                 url="http://cdn.useevr.cn/5/logo.png" width="250" height="250" alpha="1"
-                 rx="-90" ty="5000" scale="5"
-        />
-
-        <view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
-        <preview url="http://cdn.useevr.cn/5/201696KRsjNr/preview.jpg" />
-        <image>
-            <cube url="http://cdn.useevr.cn/5/201696KRsjNr/pano_%s.jpg" />
-            <cube url="http://cdn.useevr.cn/5/201696KRsjNr/mobile/pano_%s.jpg" devices="mobile" />
-        </image>
-        <hotspot name="hotspot_122222" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="91.08285485176604" atv="5.631949503111981" rotate="0" linkedscene="s_185374" />
-    </scene>
 
     <!-- scene缩略列表弹窗 -->
     <layer name="scene_thumb_container" style="container" width="290" height="240" bgcapture="false" bgalpha="0.7" align="center" visible="false">
@@ -171,5 +89,30 @@
     </layer>
 
     <include url="%SWFPATH%/skin/vtoureditor.xml" />
+
+    <scene name="s_185374" title="test"  onstart="" thumburl="http://cdn.useevr.cn/5/201696QYGHMR/thumb.jpg" lat="" lng="" heading="">
+
+        <!-- the floor platform -->
+        <!--<hotspot zorder="1" distorted="true" enabled="false"
+                 url="http://cdn.useevr.cn/5/logo.png" width="250" height="250" alpha="1"
+                 rx="-90" ty="5000" scale="5"
+        />-->
+
+        <view hlookat="10" vlookat="10" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+        <preview url="http://cdn.useevr.cn/5/201696QYGHMR/preview.jpg" />
+        <!--<hotspot zorder="1" distorted="true" enabled="false"-->
+        <!--url="http://cdn.useevr.cn/5/logo.png" width="250" height="250" alpha="1"-->
+        <!--rx="-90" ty="5000" scale="5"-->
+        <!--/>-->
+        <hotspot name="hotspot_122" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="50.694235550656344" atv="4.3413875820026115" rotate="0" linkedscene="s_196929" />
+
+        <image>
+            <cube url="http://cdn.useevr.cn/5/201696QYGHMR/pano_%s.jpg" />
+            <cube url="http://cdn.useevr.cn/5/201696QYGHMR/mobile/pano_%s.jpg" devices="mobile" />
+        </image>
+
+
+    </scene>
+
 
 </krpano>
