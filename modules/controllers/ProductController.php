@@ -273,7 +273,7 @@ class ProductController extends Controller
                             $pro_view_hotspot_ath = isset($pro_view_hotspot['@attributes']['ath'])?$pro_view_hotspot['@attributes']['ath']:'';
                             $pro_view_hotspot_atv = isset($pro_view_hotspot['@attributes']['atv'])?$pro_view_hotspot['@attributes']['atv']:'';
                             $pro_view_hotspot_linkedscene = isset($pro_view_hotspot['@attributes']['linkedscene'])?$pro_view_hotspot['@attributes']['linkedscene']:'';
-                            $pro_view_hotspot_hname = isset($pro_view_hotspot['@attributes']['hname'])?$pro_view_hotspot['@attributes']['hname']:'';
+                            $pro_view_hotspot_hname = isset($pro_view_hotspot['@attributes']['name'])?$pro_view_hotspot['@attributes']['name']:'';
                             $pro_view_hotspot_rotate = isset($pro_view_hotspot['@attributes']['rotate'])?$pro_view_hotspot['@attributes']['rotate']:'';
                             $pro_view_hotspot_scene_id = $id;
 
@@ -295,7 +295,7 @@ class ProductController extends Controller
                                 $pro_view_hotspot_ath = isset($pro_view_hotspot['@attributes']['ath'])?$pro_view_hotspot['@attributes']['ath']:'';
                                 $pro_view_hotspot_atv = isset($pro_view_hotspot['@attributes']['atv'])?$pro_view_hotspot['@attributes']['atv']:'';
                                 $pro_view_hotspot_linkedscene = isset($pro_view_hotspot['@attributes']['linkedscene'])?$pro_view_hotspot['@attributes']['linkedscene']:'';
-                                $pro_view_hotspot_hname = isset($pro_view_hotspot['@attributes']['hname'])?$pro_view_hotspot['@attributes']['hname']:'';
+                                $pro_view_hotspot_hname = isset($pro_view_hotspot['@attributes']['name'])?$pro_view_hotspot['@attributes']['name']:'';
                                 $pro_view_hotspot_rotate = isset($pro_view_hotspot['@attributes']['rotate'])?$pro_view_hotspot['@attributes']['rotate']:'';
                                 $pro_view_hotspot_scene_id = $id;
 
@@ -366,7 +366,7 @@ class ProductController extends Controller
                                 $pro_view_hotspot_ath = isset($pro_view_hotspot['@attributes']['ath'])?$pro_view_hotspot['@attributes']['ath']:'';
                                 $pro_view_hotspot_atv = isset($pro_view_hotspot['@attributes']['atv'])?$pro_view_hotspot['@attributes']['atv']:'';
                                 $pro_view_hotspot_linkedscene = isset($pro_view_hotspot['@attributes']['linkedscene'])?$pro_view_hotspot['@attributes']['linkedscene']:'';
-                                $pro_view_hotspot_hname = isset($pro_view_hotspot['@attributes']['hname'])?$pro_view_hotspot['@attributes']['hname']:'';
+                                $pro_view_hotspot_hname = isset($pro_view_hotspot['@attributes']['name'])?$pro_view_hotspot['@attributes']['name']:'';
                                 $pro_view_hotspot_rotate = isset($pro_view_hotspot['@attributes']['rotate'])?$pro_view_hotspot['@attributes']['rotate']:'';
                                 $pro_view_hotspot_scene_id = $id;
 
@@ -388,7 +388,7 @@ class ProductController extends Controller
                                     $pro_view_hotspot_ath = isset($pro_view_hotspot['@attributes']['ath'])?$pro_view_hotspot['@attributes']['ath']:'';
                                     $pro_view_hotspot_atv = isset($pro_view_hotspot['@attributes']['atv'])?$pro_view_hotspot['@attributes']['atv']:'';
                                     $pro_view_hotspot_linkedscene = isset($pro_view_hotspot['@attributes']['linkedscene'])?$pro_view_hotspot['@attributes']['linkedscene']:'';
-                                    $pro_view_hotspot_hname = isset($pro_view_hotspot['@attributes']['hname'])?$pro_view_hotspot['@attributes']['hname']:'';
+                                    $pro_view_hotspot_hname = isset($pro_view_hotspot['@attributes']['name'])?$pro_view_hotspot['@attributes']['name']:'';
                                     $pro_view_hotspot_rotate = isset($pro_view_hotspot['@attributes']['rotate'])?$pro_view_hotspot['@attributes']['rotate']:'';
                                     $pro_view_hotspot_scene_id = $id;
 
