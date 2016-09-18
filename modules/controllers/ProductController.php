@@ -219,6 +219,7 @@ class ProductController extends Controller
                         var_dump($scene->getErrors());
                         throw new \Exception("insert fail!");
                     }
+                    var_dump($scene);die;
 
                     //views库
                     $pro_view = $scene['view'];
