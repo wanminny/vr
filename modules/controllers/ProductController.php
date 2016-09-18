@@ -128,7 +128,10 @@ class ProductController extends Controller
             $pics_path = '';
             if(is_array($pic_arr) && count($pic_arr))
             {
-                $pics_path .= $this->upload_path.$pics_name." ";
+                foreach($pic_arr as $kk=> $vv)
+                {
+                    $pics_path .= $this->upload_path.$vv." ";
+                }
             }
             else{
                 $pics_path = $this->upload_path.$pics_name;
@@ -167,8 +170,15 @@ class ProductController extends Controller
             //删除文件
             if(is_array($pic_arr) && count($pic_arr))
             {
-                @unlink($this->upload_path.$pics_name);
+                foreach($pic_arr as $kk=> $vv)
+                {
+                    @unlink($this->upload_path.$vv);
+                }
             }
+            else {
+                @unlink($this->upload_path . $pics_name);
+            }
+
             return  "ok!";
         }
         else{
