@@ -37,7 +37,7 @@ use app\models\Scene;
 
         //动态生成文件内容；
 //        $filename = \Yii::$app->params['xml_path'];
-        $filename = \Yii::$app->basePath.\Yii::$app->params['gen_xml_path'];
+        $filename = \Yii::$app->basePath.\Yii::$app->params['xml_path'];
         $fp = fopen($filename, 'r+');
         $int =  -strlen("</krpano>");
         fseek($fp, $int,SEEK_END); // int 为你想写的位置距离文件开头的位置

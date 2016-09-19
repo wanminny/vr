@@ -73,7 +73,7 @@ use app\models\Scene;
 
         $xml = Scene::getScenexml($pid);
         //动态生成文件内容；
-        $filename = \Yii::$app->basePath.\Yii::$app->params['gen_xml_path'];
+        $filename = \Yii::$app->basePath.\Yii::$app->params['edit_xml_path'];
 //        $filename = \Yii::$app->params['xml_path'];
         $fp = fopen($filename, 'r+');
         $int = -strlen("</krpano>");
