@@ -92,7 +92,8 @@ use app\models\Scene;
                         $fp = fopen($filename, 'r+');
                         // $int = -strlen("</krpano>");
                         $len =  strlen("</krpano>");
-                        $int = ($k==0)?(-($len+2)):($len);
+                        $int = -$len;
+//                        $int = ($k==0)?(-($len+2)):(-$len);
 
                         fseek($fp, $int,SEEK_END); // int 为你想写的位置距离文件开头的位置
                         fwrite($fp, $xml);
