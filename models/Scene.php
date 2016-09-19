@@ -109,7 +109,9 @@ class Scene extends \yii\db\ActiveRecord
 
     public static function getSceneById($pid)
     {
-        return Scene::findOne($pid);
+        $sql = "select * from leju_scene where pro_id =".$pid;
+
+        return Scene::findBySql($sql)->asArray()->all();
     }
 
 }

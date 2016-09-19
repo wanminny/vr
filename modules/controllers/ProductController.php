@@ -449,7 +449,6 @@ class ProductController extends Controller
 
     public function actionTest()
     {
-
         $pid = \Yii::$app->request->get("pid");
         $xml = Scene::getScenexml($pid);
         var_dump($xml);

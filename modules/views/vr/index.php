@@ -33,29 +33,27 @@ use app\models\Scene;
 
     <?php
 
+    $data = Scene::getSceneById($pid);
+    if(is_array($data)) {
+        foreach ($data as $k => $v) {
+            $name = $v['name'];
 
-    $data = Scene::getSeneInfo($pid);
-    if($data) {
-        $name = $data['name'];
+            if ($name) {
+                $tmpname = "scene_" . $name;
+                $name = "<scene name=" . "\"" . $tmpname . "\"";
+                $filename = \Yii::$app->basePath . \Yii::$app->params['xml_path'];
+                $file = file_get_contents($filename);
+                if (strpos($file, "<scene name") === false) {
+                    $xml = Scene::getScenexml($pid) . "</krpano>";
 
-        if ($name)
-        {
-            $tmpname = "scene_" . $name;
-            $name = "<scene name=" . "\"" . $tmpname . "\"";
-            $filename = \Yii::$app->basePath . \Yii::$app->params['xml_path'];
-            $file = file_get_contents($filename);
-            if (strpos($file, "<scene name") === false)
-            {
-                $xml = Scene::getScenexml($pid) . "</krpano>";
-
-                //动态生成文件内容；
-                $fp = fopen($filename, 'r+');
-                //  $int =  -strlen("</krpano>");
-                $int = -(strlen("</krpano>") + 3);
-                fseek($fp, $int, SEEK_END); // int 为你想写的位置距离文件开头的位置
-                fwrite($fp, $xml);
+                    //动态生成文件内容；
+                    $fp = fopen($filename, 'r+');
+                    //  $int =  -strlen("</krpano>");
+                    $int = -(strlen("</krpano>") + 3);
+                    fseek($fp, $int, SEEK_END); // int 为你想写的位置距离文件开头的位置
+                    fwrite($fp, $xml);
+                }
             }
-
         }
     }
 
