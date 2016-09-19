@@ -479,8 +479,11 @@ class ProductController extends Controller
         //或者可以将其已JSON字符串 POS过来
         $data = Yii::$app->request->post();
         var_dump($data);
-//        http_build_url();
-//        http_build_query($data);
+
+        $rlt = [];
+        $rlt['status'] = 0;
+        $rlt['msg'] = "保存不成功";
+
        //更新数据库
         if($data)
         {
@@ -513,12 +516,17 @@ class ProductController extends Controller
                                 }
                             }
                         }
+                        $rlt['status'] = 1;
+                        $rlt['msg'] = "保存成功";
                     }
+
                 }
             }
         }
 
+        return json_encode($rlt);
     }
+
 
     //获取XML （json数据）
     public function actionGetxml()
