@@ -161,15 +161,20 @@ class ProductController extends Controller
             }
 
             (exec($command,$output,$returnValue));
-            //拷贝panos dir
-            $soucre = \Yii::$app->basePath."/web/" .\Yii::$app->params['source_path'];
-            $dest = \Yii::$app->basePath."/web/" .\Yii::$app->params['dest_path'];
-            var_dump($soucre,$dest);
-            @copy($soucre,$dest);
         }
 
         if($returnValue === 0)
         {
+            //拷贝panos dir
+            $soucre = \Yii::$app->basePath."/web/" .\Yii::$app->params['source_path'];
+            $dest = \Yii::$app->basePath."/web/" .\Yii::$app->params['dest_path'];
+            var_dump($soucre,$dest);
+//            @copy($soucre,$dest);
+            $execute_cp = "cp -rf ".$soucre." ".$dest;
+            exec($execute_cp);
+            $execute = "chmod  -R 777 ".\Yii::$app->basePath."/web/" ."vtour";
+            exec($execute);
+
             //todb and genxml
             $this->actionConv($proId);
             //删除文件
