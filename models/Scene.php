@@ -59,9 +59,10 @@ class Scene extends \yii\db\ActiveRecord
         $sql = "select scene.*,view.*,hotspots.* from leju_product as prj
                   join leju_scene as scene on prj.productid = scene.pro_id ".$where."
                   JOIN  leju_view as view on view.scene_id =  scene.id
-                  JOIN  leju_hotspots as hotspots on hotspots.scene_id = scene.id";
-        $data =  Scene::findBySql($sql)->asArray()->all();
+                  left JOIN  leju_hotspots as hotspots on hotspots.scene_id = scene.id";
 
+        $data =  Scene::findBySql($sql)->asArray()->all();
+        
         if($json == 1)
         {
             return json_encode($data);
