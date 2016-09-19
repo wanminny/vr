@@ -52,7 +52,7 @@ class Scene extends \yii\db\ActiveRecord
 
 
     //获取场景信息 组成所谓的XML_DATA （实际上为JSON）
-    public static function getSeneInfo($proId)
+    public static function getSeneInfo($proId,$json = 1)
     {
 
         $where = " and prj.productid=".$proId;
@@ -62,7 +62,12 @@ class Scene extends \yii\db\ActiveRecord
                   JOIN  leju_hotspots as hotspots on hotspots.scene_id = scene.id";
         $data =  Scene::findBySql($sql)->asArray()->all();
 
-        return json_encode($data);
+        if($json == 1)
+        {
+            return json_encode($data);
+        }else{
+            return $data;
+        }
     }
 
     //获取场景的name id 信息 有可能多个；

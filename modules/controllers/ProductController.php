@@ -202,7 +202,7 @@ class ProductController extends Controller
     {
 
         //入库
-        $xml_path = \Yii::$app->basePath.\Yii::$app->params['xml_path'];
+        $xml_path = \Yii::$app->basePath.\Yii::$app->params['gen_xml_path'];
         $xml = file_get_contents($xml_path);
         $demo =  $this->xmlToArray($xml);
 
@@ -436,6 +436,27 @@ class ProductController extends Controller
         $this->appendXml($xml,"tour_editor.xml");
 
     }
+
+    public function actionTest()
+    {
+
+        $pid = \Yii::$app->request->get("pid");
+        $xml = Scene::getScenexml($pid);
+
+        $filename = \Yii::$app->basePath.\Yii::$app->params['gen_xml_path'];
+        var_dump($filename);
+
+var_dump($xml);
+        //动态生成文件内容；
+//        $filename = \Yii::$app->params['xml_path'];
+        $fp = fopen($filename, 'r+');
+        $int = -strlen("</krpano>");
+        var_dump($int);
+        fseek($fp, $int,SEEK_END); // int 为你想写的位置距离文件开头的位置
+        fwrite($fp, $xml);
+
+    }
+
 
     //最近生成文件；
     private function appendXml($xml,$filename)

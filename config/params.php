@@ -13,6 +13,7 @@ return [
     ],
      "dir_path" =>"upload/",
     "xml_path" => "/web/vtour/tour.xml",
+    'gen_xml_path' => "/web/upload/vtour/tour.xml",
     "edit_xml_path" => "/web/vtour/tour_edit.xml",
 
 ];
