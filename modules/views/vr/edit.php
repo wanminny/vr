@@ -71,20 +71,34 @@ use app\models\Scene;
 
     <?php
 
-        $filename = \Yii::$app->basePath.\Yii::$app->params['edit_xml_path'];
-        $file = file_get_contents($filename);
-        if(strpos($file,"<scene name") === false)
+        $data = Scene::getSeneInfo($pid);
+        if($data)
         {
-            $xml = Scene::getScenexml($pid)."</krpano>";
-            //动态生成文件内容；
+            $name = $data['name'];
+
+            if($name)
+            {
+                $tmpname = "scene_".$name;
+                $name = "<scene name="."\"".$tmpname."\"";
+
+                $filename = \Yii::$app->basePath.\Yii::$app->params['edit_xml_path'];
+                $file = file_get_contents($filename);
+                if(strpos($file,$name) === false)
+                {
+                    $xml = Scene::getScenexml($pid)."</krpano>";
+                    //动态生成文件内容；
 //            $filename = \Yii::$app->basePath.\Yii::$app->params['edit_xml_path'];
 //        $filename = \Yii::$app->params['xml_path'];
-            $fp = fopen($filename, 'r+');
-            // $int = -strlen("</krpano>");
-            $int = -(strlen("</krpano>")+3);
-            fseek($fp, $int,SEEK_END); // int 为你想写的位置距离文件开头的位置
-            fwrite($fp, $xml);
+                    $fp = fopen($filename, 'r+');
+                    // $int = -strlen("</krpano>");
+                    $int = -(strlen("</krpano>")+3);
+                    fseek($fp, $int,SEEK_END); // int 为你想写的位置距离文件开头的位置
+                    fwrite($fp, $xml);
+                }
+            }
         }
+
+
 
 
     ?>

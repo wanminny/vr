@@ -106,4 +106,10 @@ class Scene extends \yii\db\ActiveRecord
         return $xml;
     }
 
+
+    public static function getSceneById($pid)
+    {
+        return Scene::findOne($pid);
+    }
+
 }
