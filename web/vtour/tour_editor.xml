@@ -92,4 +92,6 @@
         </layer>
     </layer>
 
-    <include url="%SWFPATH%/skin/vtoureditor.xml" /></krpano>
+    <include url="%SWFPATH%/skin/vtoureditor.xml" />
+    
+</krpano>
