@@ -39,11 +39,11 @@ use app\models\Scene;
             $name = $v['name'];
 
             if ($name) {
-                $tmpname = "scene_" . $name;
-                $name = "<scene name=" . "\"" . $tmpname . "\"";
+//                $tmpname = "scene_" . $name;
+                $name = "<scene name=" . "\"" . $name . "\"";
                 $filename = \Yii::$app->basePath . \Yii::$app->params['xml_path'];
                 $file = file_get_contents($filename);
-                if (strpos($file, "<scene name") === false) {
+                if (strpos($file, $name) === false) {
                     $xml = Scene::getScenexml($pid) . "</krpano>";
 
                     //动态生成文件内容；

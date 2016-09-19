@@ -80,8 +80,8 @@ use app\models\Scene;
 
                 if($name)
                 {
-                    $tmpname = "scene_".$name;
-                    $name = "<scene name="."\"".$tmpname."\"";
+//                    $tmpname = "scene_".$name;
+                    $name = "<scene name="."\"".$name."\"";
 
                     $filename = \Yii::$app->basePath.\Yii::$app->params['edit_xml_path'];
                     $file = file_get_contents($filename);
