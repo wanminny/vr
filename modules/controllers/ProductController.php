@@ -478,7 +478,7 @@ class ProductController extends Controller
     {
         //或者可以将其已JSON字符串 POS过来
         $data = Yii::$app->request->post();
-        var_dump($data);
+//        var_dump($data);
 
         $rlt = [];
         $rlt['status'] = 0;
@@ -495,29 +495,42 @@ class ProductController extends Controller
                 {
                     foreach($data['data'] as $key => $v)
                     {
-                        //获取一个PID所属于的所有场景的名称
-                        $scene_names = Scene::getSceneName($proId);
-                        foreach($scene_names as $k2 => $v2)
-                        {
-                            if($key ==  $v2['name'])
+
+                        $connection = \Yii::$app->db;
+                        $transaction = $connection->beginTransaction();
+
+                        try{
+                            //获取一个PID所属于的所有场景的名称
+                            $scene_names = Scene::getSceneName($proId);
+                            foreach($scene_names as $k2 => $v2)
                             {
-                                foreach($v as $k1 => $v1)
+                                if($key ==  $v2['name'])
                                 {
-                                    //处理view （暂时不需要处理）
-
-                                    //处理picspots (暂时不需要处理)
-
-                                    //hotspots
-                                    if($k1 == "hotspots" && !empty($v1))
+                                    foreach($v as $k1 => $v1)
                                     {
-                                        //更新对应的hname 而且 sceneid = $v2['id']
-                                        Scene::editInfo($v2['id'],$v1);
+                                        //处理view （暂时不需要处理）
+
+                                        //处理picspots (暂时不需要处理)
+
+                                        //hotspots
+                                        if($k1 == "hotspots" && !empty($v1))
+                                        {
+                                            //更新对应的hname 而且 sceneid = $v2['id']
+                                            Scene::editInfo($v2['id'],$v1);
+                                        }
                                     }
                                 }
                             }
+                            $transaction->commit();
+                            $rlt['status'] = 1;
+                            $rlt['msg'] = "保存成功";
+
                         }
-                        $rlt['status'] = 1;
-                        $rlt['msg'] = "保存成功";
+                        catch (Exception $e)
+                        {
+                            $transaction->rollBack();
+                        }
+
                     }
 
                 }

@@ -83,16 +83,20 @@ class Scene extends \yii\db\ActiveRecord
     //更新对应的HOTSPOTS表
     public static function editInfo($id,$arr)
     {
-        $model = Scene::findOne($id)->toArray();
+        $model = Scene::findOne($id);
 
         if(count($arr))
         {
             foreach($arr as $key => $value)
             {
-                if($key != "hname")
+                foreach($value as $kk => $vv)
                 {
-                    $model->$key = $value;
+                    if($kk != "hname")
+                    {
+                        $model->$kk = $vv;
+                    }
                 }
+
             }
             $model->save();
         }
