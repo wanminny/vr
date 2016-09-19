@@ -477,7 +477,7 @@ class ProductController extends Controller
     public function actionSave()
     {
         //或者可以将其已JSON字符串 POS过来
-        $data = Yii::$app->request->get();
+        $data = Yii::$app->request->post();
         var_dump($data);
 //        http_build_url();
 //        http_build_query($data);

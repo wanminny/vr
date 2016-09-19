@@ -92,7 +92,7 @@ function init_xml_data(scene){
 //向服务器端post设置的xml
 function post_xml_data(){
     var radars = getRadars();
-    $.post("/member/project",{act:'edit',pid:pid,data:xml_data,radars:radars},function(data){
+    $.post("index.php?r=admin/product/save",{act:'edit',pid:pid,data:xml_data,radars:radars},function(data){
         var data = eval('('+data+')');
         if(data.status==1){
             alert('保存成功');
