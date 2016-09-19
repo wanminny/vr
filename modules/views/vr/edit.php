@@ -76,7 +76,8 @@ use app\models\Scene;
         $filename = \Yii::$app->basePath.\Yii::$app->params['edit_xml_path'];
 //        $filename = \Yii::$app->params['xml_path'];
         $fp = fopen($filename, 'r+');
-        $int = -strlen("</krpano>");
+       // $int = -strlen("</krpano>");
+     $int = -(strlen("</krpano>")+3);
         fseek($fp, $int,SEEK_END); // int 为你想写的位置距离文件开头的位置
         fwrite($fp, $xml);
 
