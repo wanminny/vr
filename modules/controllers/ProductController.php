@@ -442,16 +442,14 @@ class ProductController extends Controller
 
         $pid = \Yii::$app->request->get("pid");
         $xml = Scene::getScenexml($pid);
-
+        var_dump($xml);
         $filename = \Yii::$app->basePath.\Yii::$app->params['gen_xml_path'];
         var_dump($filename);
 
-var_dump($xml);
         //动态生成文件内容；
 //        $filename = \Yii::$app->params['xml_path'];
         $fp = fopen($filename, 'r+');
         $int = -strlen("</krpano>");
-        var_dump($int);
         fseek($fp, $int,SEEK_END); // int 为你想写的位置距离文件开头的位置
         fwrite($fp, $xml);
 
