@@ -25,7 +25,7 @@ class VrController extends CommonController
     //获取预览页面
     public function actionIndex()
     {
-        $pid = \Yii::$app->request->getQueryParam("pid","");
+        $pid = \Yii::$app->request->getQueryParam("productid","");
 
         if($pid)
         {
@@ -47,7 +47,7 @@ class VrController extends CommonController
     //获取编辑页面
     public function actionEdit()
     {
-        $pid = \Yii::$app->request->getQueryParam("pid","");
+        $pid = \Yii::$app->request->getQueryParam("productid","");
         if($pid)
         {
             //获取工程名称
