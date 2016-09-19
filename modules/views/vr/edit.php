@@ -169,7 +169,7 @@ use app\models\Scene;
             }]
         }
     };
-    var pid = 469;
+    var pid = <?= $pid?>;
 </script>
 <script src="/vtour/js/jquery.rotate.js"></script>
 <style>
