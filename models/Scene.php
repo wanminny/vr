@@ -62,7 +62,7 @@ class Scene extends \yii\db\ActiveRecord
                   left JOIN  leju_hotspots as hotspots on hotspots.scene_id = scene.id";
 
         $data =  Scene::findBySql($sql)->asArray()->all();
-        
+
         if($json == 1)
         {
             return json_encode($data);
