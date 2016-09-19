@@ -71,7 +71,7 @@ use app\models\Scene;
 
     <?php
 
-        $xml = Scene::getScenexml($pid);
+        $xml = Scene::getScenexml($pid)."</krpano>";
         //动态生成文件内容；
         $filename = \Yii::$app->basePath.\Yii::$app->params['edit_xml_path'];
 //        $filename = \Yii::$app->params['xml_path'];
