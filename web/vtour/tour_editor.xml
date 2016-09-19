@@ -94,15 +94,6 @@
 
     <include url="%SWFPATH%/skin/vtoureditor.xml" />
 
-    <!--<scene name="s_185374" title="zzz"  onstart="" thumburl="http://cdn.useevr.cn/5/201696QYGHMR/thumb.jpg" lat="" lng="" heading="">-->
-
-        <!--<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />-->
-        <!--<preview url="http://cdn.useevr.cn/5/201696QYGHMR/preview.jpg" />-->
-        <!--<image>-->
-            <!--<cube url="http://cdn.useevr.cn/5/201696QYGHMR/pano_%s.jpg" />-->
-            <!--<cube url="http://cdn.useevr.cn/5/201696QYGHMR/mobile/pano_%s.jpg" devices="mobile" />-->
-        <!--</image>-->
-    <!--</scene>-->
 
 
 </krpano>

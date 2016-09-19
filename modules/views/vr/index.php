@@ -43,6 +43,8 @@ use app\models\Scene;
         fseek($fp, $int,SEEK_END); // int 为你想写的位置距离文件开头的位置
         fwrite($fp, $xml);
 
+
+
     ?>
 
     <script>
