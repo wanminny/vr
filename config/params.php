@@ -15,7 +15,7 @@ return [
     "xml_path" => "/web/vtour/tour.xml",
     'gen_xml_path' => "/web/upload/vtour/tour.xml",
     "edit_xml_path" => "/web/vtour/tour_editor.xml",
-    "source_path" => "vtour/upload/vtour/panos/*",
+    "source_path" => "upload/vtour/panos/*",
     "dest_path"=> "vtour/panos/",
 
 ];
