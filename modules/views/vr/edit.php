@@ -171,7 +171,7 @@ use app\models\Scene;
     };
     var pid = 469;
 </script>
-<script src= <?= $pid;?>+"/vtour/js/jquery.rotate.js"></script>
+<script src="/vtour/js/jquery.rotate.js"></script>
 <style>
     .radar-container {
         position: absolute;
@@ -564,5 +564,5 @@ use app\models\Scene;
     });
 
 </script>
-<script type="text/javascript" src= <?= $pid;?>+"/vtour/js/addtoureditor.js"></script>
+<script type="text/javascript" src= "/vtour/js/addtoureditor.js"></script>
 
