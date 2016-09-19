@@ -53,6 +53,4 @@
 		set(vlookat,get(atv));
 		<!--jscall(calc('console.log("ath:'+ath+',atv:'+atv+'")'));-->
 		);
-	</action>
-
-</krpano>
+	</action></krpano>
