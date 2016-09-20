@@ -83,12 +83,12 @@
 
     <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
         <level tiledimagewidth="128" tiledimageheight="128">
-            <cube url="panos/baidu.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+            <cube url="panos/<?php echo $k; ?>.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
         </level>
     </image>
 
     <image if="webvr.isenabled">
-        <cube url="panos/baidu.tiles/vr/pano_%s.jpg" />
+        <cube url="panos/<?php echo $k; ?>.tiles/vr/pano_%s.jpg" />
     </image>
 
     <?php if($v['hotspots'] && is_array($v['hotspots']) && count($v['hotspots'])):    ?>
