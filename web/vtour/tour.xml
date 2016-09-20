@@ -57,7 +57,7 @@
 
 <!--    <{foreach $pro.scenes as $k=>$v}>-->
     <?php foreach($xml as $k=>$v):?>
-    <scene name="<?= $k;?>" title="<?=$v['view']['title']?>">
+    <scene name="<?= $k;?>" title="<?=$v['view']['title']?>" onstart="" havevrimage="true" thumburl="vtour/<?=$v['view']['thumburl'] ?>" lat="" lng="" heading="">
 
 <!--     <{if $pro.radars neq "" }> onstart="activatespot(<{$pro.radars[$k].rotate}>)" <{/if}>-->
 <!--     thumburl="<{$v.img}>thumb.jpg" lat="" lng="" heading="">-->
