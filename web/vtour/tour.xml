@@ -93,7 +93,7 @@
 
     <?php if($v['hotspots'] && is_array($v['hotspots']) && count($v['hotspots'])):    ?>
     <?php foreach($v['hotspots'] as $k2 => $v2): ?>
-    <hotspot name="<?= $v2['hname'];>" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="<?= $v2['ath'];>" atv="<?=$v2['hname'];?>" rotate="<?=intval($v2['rotate']);?>" linkedscene="<?=$v2['linkedscene'];?>" />
+    <hotspot name="<?= $v2['hname'];?>" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="<?= $v2['ath'];?>" atv="<?=$v2['hname'];?>" rotate="<?=intval($v2['rotate']);?>" linkedscene="<?=$v2['linkedscene'];?>" />
     <?php endforeach; ?>
     <?php endif; ?>
 
