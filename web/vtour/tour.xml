@@ -79,16 +79,16 @@
 <!--        <cube url="<{$v.img}>mobile/pano_%s.jpg" devices="mobile" />-->
 <!--    </image>-->
 
-    <preview url="panos/<?=$v['view']['title']?>.tiles/preview.jpg" />
+    <preview url="vtour/panos/<?=$v['view']['title']?>.tiles/preview.jpg" />
 
     <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
         <level tiledimagewidth="128" tiledimageheight="128">
-            <cube url="panos/<?=$v['view']['title']?>.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+            <cube url="vtour/panos/<?=$v['view']['title']?>.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
         </level>
     </image>
 
     <image if="webvr.isenabled">
-        <cube url="panos/<?=$v['view']['title']?>.tiles/vr/pano_%s.jpg" />
+        <cube url="vtour/panos/<?=$v['view']['title']?>.tiles/vr/pano_%s.jpg" />
     </image>
 
     <?php if($v['hotspots'] && is_array($v['hotspots']) && count($v['hotspots'])):    ?>
