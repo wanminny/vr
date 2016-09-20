@@ -96,6 +96,7 @@ class VrController extends CommonController
 
         if($pid)
         {
+            $xml = $this->composeData($pid);
             $path = \Yii::$app->basePath."/web/vtour/tour.xml";
             include_once($path);
 
@@ -113,6 +114,7 @@ class VrController extends CommonController
         $pid = \Yii::$app->request->getQueryParam("productid","");
         if($pid)
         {
+            $xml = $this->composeData($pid);
             $path = \Yii::$app->basePath."/web/vtour/tour_editor.xml";
             include_once($path);
 
