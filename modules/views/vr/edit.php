@@ -127,37 +127,38 @@ use app\models\Scene;
 <script type="text/javascript">
     //声明相关变量
     var xml_data = new Object();
-    xml_data = {
-        "s_826823": {
-            "view": {"hlookat": "-133.36177199318357", "vlookat": "0.1360865824582751"},
-            "hotspots": [{
-                "ath": "-43.71962670315895",
-                "atv": "8.601800484623901",
-                "linkedscene": "s_816391",
-                "hname": "hotspot_1",
-                "rotate": "360"
-            }, {
-                "ath": "-121.73997680853083",
-                "atv": "8.67509938542318",
-                "linkedscene": "s_826823",
-                "hname": "hotspot_12"
-            }, {
-                "ath": "-78.41522414859054",
-                "atv": "10.490137848372068",
-                "linkedscene": "s_254773",
-                "hname": "hotspot_122"
-            }]
-        },
-        "s_816391": {
-            "view": {"hlookat": "226.47251277639035", "vlookat": "20.838315064524608"},
-            "hotspots": [{
-                "ath": "-137.07809699885559",
-                "atv": "25.700593088512584",
-                "linkedscene": "s_254773",
-                "hname": "hotspot_14"
-            }]
-        }
-    };
+    xml_data = <?= $xml ?>;
+//    xml_data = {
+//        "s_826823": {
+//            "view": {"hlookat": "-133.36177199318357", "vlookat": "0.1360865824582751"},
+//            "hotspots": [{
+//                "ath": "-43.71962670315895",
+//                "atv": "8.601800484623901",
+//                "linkedscene": "s_816391",
+//                "hname": "hotspot_1",
+//                "rotate": "360"
+//            }, {
+//                "ath": "-121.73997680853083",
+//                "atv": "8.67509938542318",
+//                "linkedscene": "s_826823",
+//                "hname": "hotspot_12"
+//            }, {
+//                "ath": "-78.41522414859054",
+//                "atv": "10.490137848372068",
+//                "linkedscene": "s_254773",
+//                "hname": "hotspot_122"
+//            }]
+//        },
+//        "s_816391": {
+//            "view": {"hlookat": "226.47251277639035", "vlookat": "20.838315064524608"},
+//            "hotspots": [{
+//                "ath": "-137.07809699885559",
+//                "atv": "25.700593088512584",
+//                "linkedscene": "s_254773",
+//                "hname": "hotspot_14"
+//            }]
+//        }
+//    };
     var pid = <?= $pid?>;
 </script>
 <script src="/vtour/js/jquery.rotate.js"></script>
