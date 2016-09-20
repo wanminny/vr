@@ -77,6 +77,7 @@ class Product extends ActiveRecord
     public function getViewById($proId)
     {
             $sql = 'SELECT
+        scene.title,
         leju_view.scene_id,
         leju_view.hlookat,
         leju_view.vlookat

@@ -22,6 +22,39 @@ class VrController extends CommonController
     public $enableCsrfValidation = false;
 
 
+    public function composeData($pid)
+    {
+        $scene_info = [];
+        //获取工程名称
+        $pro_model = new Product();
+
+        $scene =  $pro_model->getScene($pid);
+
+        //获取指定工程的场景和视图信息；
+        $view_scene =  $pro_model->getViewById($pid);
+//            var_dump($view_scene);die;
+        if(is_array($scene) && count($scene))
+        {
+            foreach($scene as $key => $value)
+            {
+                //获取指定视图的热点信息
+                if($view_scene)
+                {
+                    $scene_info[$value['name']]['view'] = $view_scene[0];
+                    //获取改工程下面的场景
+                    $scene_id = $view_scene[0]['scene_id'];
+                    if($scene_id)
+                    {
+                        $scene_info[$value['name']]['hotspots'] = $pro_model->getHotspotsById($scene_id);
+                    }
+                }
+            }
+        }
+
+        return $scene_info;
+    }
+
+
     //获取预览页面
     public function actionIndex()
     {
@@ -29,12 +62,8 @@ class VrController extends CommonController
 
         if($pid)
         {
-            //获取工程名称
-            $pro_model = new Product();
-            $pro_info = $pro_model->getProInfoById($pid);
-            //获取改工程下面的场景
-            $scen_info = Scene::getSeneInfo($pid);
-            return $this->render("index",["pid"=> $pid,"product"=> $pro_info,"scene" => $scen_info]);
+            $scene_info = $this->composeData($pid);
+            return $this->render("index",["pid"=> $pid,"xml"=> json_encode($scene_info)]);
 
         }else{
             echo "项目id不存在";
@@ -49,34 +78,7 @@ class VrController extends CommonController
         $pid = \Yii::$app->request->getQueryParam("productid","");
         if($pid)
         {
-            $scene_info = [];
-            //获取工程名称
-            $pro_model = new Product();
-
-            $scene =  $pro_model->getScene($pid);
-
-                //获取指定工程的场景和视图信息；
-            $view_scene =  $pro_model->getViewById($pid);
-//            var_dump($view_scene);die;
-            if(is_array($scene) && count($scene))
-            {
-                foreach($scene as $key => $value)
-                {
-                    //获取指定视图的热点信息
-                    if($view_scene)
-                    {
-                        $scene_info[$value['name']]['view'] = $view_scene[0];
-                        //获取改工程下面的场景
-                        $scene_id = $view_scene[0]['scene_id'];
-                        if($scene_id)
-                        {
-                            $scene_info[$value['name']]['hotspots'] = $pro_model->getHotspotsById($scene_id);
-                        }
-                    }
-                }
-            }
-
-//            var_dump($scene_info,json_encode($scene_info));die;
+            $scene_info = $this->composeData($pid);
 
             return $this->render("edit",["pid"=> $pid,"xml"=> json_encode($scene_info)]);
 
@@ -91,6 +93,7 @@ class VrController extends CommonController
     public function actionXml()
     {
         $pid = \Yii::$app->request->getQueryParam("productid","");
+
         if($pid)
         {
             $path = \Yii::$app->basePath."/web/vtour/tour.xml";
@@ -101,6 +104,8 @@ class VrController extends CommonController
             exit;
         }
     }
+
+
 
     //获取制定XML模板
     public function actionEditxml()

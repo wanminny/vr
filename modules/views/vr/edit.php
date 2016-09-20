@@ -69,43 +69,6 @@ use app\models\Scene;
         </table>
     </noscript>
 
-    <?php
-
-        $data = Scene::getSceneById($pid);
-        if(is_array($data))
-        {
-            foreach($data as $k => $v)
-            {
-                $name = $v['name'];
-
-                if($name)
-                {
-                    $name = "<scene name="."\"".$name."\"";
-                    $filename = \Yii::$app->basePath.\Yii::$app->params['edit_xml_path'];
-                    $file = file_get_contents($filename);
-                    if(strpos($file,$name) === false)
-                    {
-                        $xml = Scene::getScenexml($pid)."</krpano>";
-                        //动态生成文件内容；
-                        $fp = fopen($filename, 'r+');
-                        // $int = -strlen("</krpano>");
-                        $len =  strlen("</krpano>");
-                        $int = -$len;
-//                        $int = ($k==0)?(-($len+2)):(-$len);
-
-                        fseek($fp, $int,SEEK_END); // int 为你想写的位置距离文件开头的位置
-                        fwrite($fp, $xml);
-                    }
-                }
-
-            }
-
-        }
-
-
-
-
-    ?>
 
     <script type="text/javascript">
 

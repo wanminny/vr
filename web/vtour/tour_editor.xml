@@ -73,8 +73,6 @@
                 </layer>
                 1
 
-
-
             </layer>
             <!-- the scrollbar -->
             <layer name="scrollbar" type="container" bgcolor="0x000000" bgalpha="0.25" align="righttop" x="0" y="0" width="19" height="100%">
@@ -83,6 +81,7 @@
                 <layer name="scrollslider" url="skin/sliderbutton.png" align="righttop" x="0" y="19" crop="0|0|19|19" onovercrop="0|19|19|19" ondowncrop="0|38|19|19" ondown="if(layer[scroll_content].hoverflow GT 0, copy(cy,y);copy(sy,mouse.stagey);dragging(); );" dragging="if(pressed, sub(dy,mouse.stagey,sy);add(ny,cy,dy);Math.max(ny,layer[scrollup].pixelheight); copy(th,layer[scrollbar].pixelheight);sub(th,layer[scrolldown].pixelheight);sub(th,layer[scrollslider].pixelheight);Math.min(ny,th); copy(y,ny); sub(ny,layer[scrollup].pixelheight);sub(th,layer[scrollslider].pixelheight);div(ny,th); copy(fh,layer[scroll_content].hoverflow); mul(fh,-1); mul(ny,fh); layer[scroll_content].stopscrolling(); copy(layer[scroll_content].y,ny); delayedcall(0,dragging()); );" />
             </layer>
         </layer>
+
         <!-- 按钮 -->
         <layer name="btn_con_link_container" style="subbtn" width="130" auheight="true" align="topleft" x="10" y="210" enabled="false" onclick="confirm_linkded_scene();">
             <layer name="btn_con_link_scene" style="text" html="确定" />
@@ -92,4 +91,6 @@
         </layer>
     </layer>
 
-    <include url="%SWFPATH%/skin/vtoureditor.xml" /></krpano>
+    <include url="%SWFPATH%/skin/vtoureditor.xml" />
+
+</krpano>
