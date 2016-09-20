@@ -87,18 +87,35 @@ class VrController extends CommonController
     }
 
 
+    //获取制定XML模板
     public function actionXml()
     {
         $pid = \Yii::$app->request->getQueryParam("productid","");
         if($pid)
         {
-            $path = \Yii::$app->basePath."/web/vtour/"."tour.xml";
+            $path = \Yii::$app->basePath."/web/vtour/tour.xml";
             include_once($path);
 
         }else {
             echo "项目id不存在";
             exit;
         }
+    }
+
+    //获取制定XML模板
+    public function actionEditxml()
+    {
+        $pid = \Yii::$app->request->getQueryParam("productid","");
+        if($pid)
+        {
+            $path = \Yii::$app->basePath."/web/vtour/tour_editor.xml";
+            include_once($path);
+
+        }else {
+            echo "项目id不存在";
+            exit;
+        }
+
     }
 
 }

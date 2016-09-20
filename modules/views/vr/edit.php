@@ -111,7 +111,7 @@ use app\models\Scene;
 
         var base_path = "vtour/";
         var swf_path = base_path+"tour.swf";
-        var xml_path = base_path+"tour_editor.xml";
+        var xml_path = "<?php echo yii\helpers\Url::to(['vr/editxml', 'productid' => $pid]); ?>";
 
         embedpano({
             swf: swf_path,
