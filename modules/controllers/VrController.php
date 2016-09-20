@@ -86,4 +86,19 @@ class VrController extends CommonController
         }
     }
 
+
+    public function actionXml()
+    {
+        $pid = \Yii::$app->request->getQueryParam("productid","");
+        if($pid)
+        {
+            $path = \Yii::$app->basePath."/web/vtour/"."tour.xml";
+            include_once($path);
+
+        }else {
+            echo "项目id不存在";
+            exit;
+        }
+    }
+
 }

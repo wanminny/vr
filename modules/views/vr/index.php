@@ -60,10 +60,11 @@ use app\models\Scene;
 
     ?>
 
+
     <script>
         var base_path = "vtour/";
         var swf_path = base_path+"tour.swf";
-        var xml_path = base_path+"tour.xml";
+        var xml_path = "<?php echo yii\helpers\Url::to(['vr/xml', 'productid' => $pid]); ?>";
 
         embedpano({swf:swf_path, xml:xml_path, target:"pano", html5:"auto", mobilescale:1.0, passQueryParameters:true});
 
