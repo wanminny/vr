@@ -70,8 +70,40 @@ class Product extends ActiveRecord
 
     public  function getProInfoById($proId)
     {
-        return $this->findOne($proId);
+        return $this->findOne($proId)->toArray();
     }
 
+    //获取指定工程ID的试图和场景信息
+    public function getViewById($proId)
+    {
+            $sql = 'SELECT
+        leju_view.scene_id,
+        leju_view.hlookat,
+        leju_view.vlookat
+    FROM
+        leju_scene AS scene  JOIN leju_view ON leju_view.scene_id = scene.id and scene.pro_id ='.$proId;
+        $data = $this->findBySql($sql)->asArray()->all();
+        return $data;
+
+    }
+
+    public function getScene($proId)
+    {
+        $sql = 'SELECT * FROM
+        leju_scene  WHERE pro_id ='.$proId;
+        $data = $this->findBySql($sql)->asArray()->all();
+        return $data;
+    }
+
+    //获取指定视图id的所有热点信息；
+    public function getHotspotsById($sceneId)
+    {
+        $sql = 'SELECT hotspots.*
+          FROM
+	    leju_hotspots AS  hotspots  WHERE hotspots.scene_id = '.$sceneId;
+        $data = $this->findBySql($sql)->asArray()->all();
+        return $data;
+
+    }
 
 }

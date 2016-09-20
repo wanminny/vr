@@ -530,9 +530,7 @@ class ProductController extends Controller
                         {
                             $transaction->rollBack();
                         }
-
                     }
-
                 }
             }
         }

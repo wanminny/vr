@@ -80,9 +80,7 @@ use app\models\Scene;
 
                 if($name)
                 {
-//                    $tmpname = "scene_".$name;
                     $name = "<scene name="."\"".$name."\"";
-
                     $filename = \Yii::$app->basePath.\Yii::$app->params['edit_xml_path'];
                     $file = file_get_contents($filename);
                     if(strpos($file,$name) === false)
@@ -157,15 +155,6 @@ use app\models\Scene;
                 "atv": "25.700593088512584",
                 "linkedscene": "s_254773",
                 "hname": "hotspot_14"
-            }]
-        },
-        "s_254773": {
-            "view": {"hlookat": "-48.04810923388179", "vlookat": "1.7079378106166534"},
-            "hotspots": [{
-                "ath": "-65.92861818118888",
-                "atv": "29.180624824642884",
-                "linkedscene": "s_816391",
-                "hname": "hotspot_16"
             }]
         }
     };
