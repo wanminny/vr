@@ -93,4 +93,54 @@
 
     <include url="%SWFPATH%/skin/vtoureditor.xml" />
 
+    <!--    <{foreach $pro.scenes as $k=>$v}>-->
+    <?php foreach($xml as $k=>$v):?>
+    <scene name="<?= $k;?>" title="<?=$v['view']['title']?>">
+
+        <!--     <{if $pro.radars neq "" }> onstart="activatespot(<{$pro.radars[$k].rotate}>)" <{/if}>-->
+        <!--     thumburl="<{$v.img}>thumb.jpg" lat="" lng="" heading="">-->
+
+        <!--    <{if $pro.bd && $pro.logo}>-->
+        <!-- the floor platform -->
+        <!--    <hotspot zorder="1" distorted="true" enabled="false"-->
+        <!--             url="<{$_lang.img_host}><{$pro.uid}>/logo.png" width="250" height="250" alpha="1"-->
+        <!--             rx="-90" ty="5000" scale="5"-->
+        <!--            />-->
+        <!--    <{/if}>-->
+
+        <view hlookat="<?php echo ($v['view']['hlookat'])?$v['view']['hlookat']:0;  ?>" vlookat="<?php echo ($v['view']['vlookat'])?$v['view']['vlookat']:0;  ?>"
+              fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+        <!--    <preview url="<{$v.img}>preview.jpg" />-->
+        <!--    <image>-->
+        <!--        <cube url="<{$v.img}>pano_%s.jpg" />-->
+        <!--        <cube url="<{$v.img}>mobile/pano_%s.jpg" devices="mobile" />-->
+        <!--    </image>-->
+
+        <preview url="vtour/panos/<?=$v['view']['title']?>.tiles/preview.jpg" />
+
+        <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+            <level tiledimagewidth="128" tiledimageheight="128">
+                <cube url="vtour/panos/<?=$v['view']['title']?>.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+            </level>
+        </image>
+
+        <image if="webvr.isenabled">
+            <cube url="vtour/panos/<?=$v['view']['title']?>.tiles/vr/pano_%s.jpg" />
+        </image>
+
+        <?php if($v['hotspots'] && is_array($v['hotspots']) && count($v['hotspots'])):    ?>
+        <?php foreach($v['hotspots'] as $k2 => $v2): ?>
+        <hotspot name="<?= $v2['hname'];?>" style="skin_hotspotstyle" distorted="true" depth="10000" scale="6" zoom="false" ath="<?= $v2['ath'];?>" atv="<?=$v2['hname'];?>" rotate="<?=intval($v2['rotate']);?>" linkedscene="<?=$v2['linkedscene'];?>" />
+        <?php endforeach; ?>
+        <?php endif; ?>
+
+
+        <!--    <{foreach $v.picspots as $v3}>-->
+        <!--    <hotspot name="<{$v3.hname}>" url="<{$v3.url}>" distorted="true" depth="<{$v3.depth}>" scale="<{$v3.scale}>" ath="<{$v3.ath}>" atv="<{$v3.atv}>" rotate="<{intval($v3.rotate)}>"/>-->
+        <!--    <{/foreach}>-->
+
+    </scene>
+    <?php endforeach;?>
+
 </krpano>
