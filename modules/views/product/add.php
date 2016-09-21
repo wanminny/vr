@@ -51,7 +51,7 @@
                                     echo $form->field($model, 'pics[]')->fileInput(['class' => 'span9', 'multiple' => true,]);
                                 ?>
                                 <?php
-                                    var_dump($model->pics,$model);
+//                                    var_dump($model->pics,$model);
                                     foreach((array)json_decode($model->pics, true) as $k=>$pic) {
                                 ?>
                                     <img src="<?php echo $pic ?>">

@@ -428,12 +428,12 @@ class ProductController extends Controller
     }
 
 
-    /// 保存设置
+    /// 保存设置 编辑热点等信息；
     public function actionSave()
     {
         //或者可以将其已JSON字符串 POS过来
         $data = Yii::$app->request->post();
-var_dump($data);die;
+        var_dump($data);die;
         $rlt = [];
         $rlt['status'] = 0;
         $rlt['msg'] = "保存不成功";
@@ -449,14 +449,12 @@ var_dump($data);die;
                 {
                     foreach($data['data'] as $key => $v)
                     {
-
                         $connection = \Yii::$app->db;
                         $transaction = $connection->beginTransaction();
 
                         try{
                             //获取一个PID所属于的所有场景的名称
                             $scene_names = Scene::getSceneName($proId);
-
                             foreach($scene_names as $k2 => $v2)
                             {
                                 if($key ==  $v2['name'])
@@ -573,6 +571,7 @@ var_dump($data);die;
                 }
             }
         }
+        // 不同时上传貌似有点问题；
 //        var_dump($model->pics);die;
         return $this->render('add', ['model' => $model, 'opts' => $list]);
 
