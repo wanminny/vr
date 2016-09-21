@@ -348,7 +348,7 @@ class ProductController extends Controller
                         }
 
                         //views库
-                        $pro_view = $demo['scene']['view'];
+                        $pro_view = $value['view'];
 //                        $pro_view = $scene['view'];
                         if($pro_view && is_array($pro_view))
                         {
