@@ -338,7 +338,7 @@ class ProductController extends Controller
                         $scene->thumburl = $scene_thumburl;
                         $scene->pro_id = $scene_pro_id;
 
-                        if($scene->save())
+                        if($scene->save(false))
                         {
                             $id =  \Yii::$app->db->getLastInsertId();
                         }
