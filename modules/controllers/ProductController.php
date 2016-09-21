@@ -507,7 +507,7 @@ var_dump($data);die;
     }
 
 
-    ///编辑
+    ///编辑  (之前生成的场景等并没删除！后面可以增加)
     public function actionMod()
     {
         $this->layout = "layout1";
@@ -521,9 +521,6 @@ var_dump($data);die;
         if (Yii::$app->request->isPost) {
             $post = Yii::$app->request->post();
 //            var_dump($post,$_FILES);die;
-
-
-
 //            $qiniu = new Qiniu(Product::AK, Product::SK, Product::DOMAIN, Product::BUCKET);
 //            $post['Product']['cover'] = $model->cover;
 //            if ($_FILES['Product']['error']['cover'] == 0) {
@@ -576,6 +573,7 @@ var_dump($data);die;
                 }
             }
         }
+//        var_dump($model->pics);die;
         return $this->render('add', ['model' => $model, 'opts' => $list]);
 
     }
