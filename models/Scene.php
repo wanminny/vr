@@ -142,6 +142,7 @@ class Scene extends \yii\db\ActiveRecord
                         {
                             $model_hot_new->$k2 = $v2;
                         }
+                        $model_hot_new->$id;
                         $model_hot_new->save(false);
                     }
                 }
