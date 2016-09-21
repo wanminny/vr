@@ -507,6 +507,7 @@ var_dump($data);die;
     }
 
 
+    ///编辑
     public function actionMod()
     {
         $this->layout = "layout1";
@@ -551,6 +552,9 @@ var_dump($data);die;
 //            else
             {
                 if ($model->load($post) && $model->save()) {
+
+                    $reslt = $this->gen($productid);
+                    echo $reslt;
                     Yii::$app->session->setFlash('info', '修改成功');
 
                 }
