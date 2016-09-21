@@ -520,30 +520,32 @@ var_dump($data);die;
 
         if (Yii::$app->request->isPost) {
             $post = Yii::$app->request->post();
-            $qiniu = new Qiniu(Product::AK, Product::SK, Product::DOMAIN, Product::BUCKET);
-            $post['Product']['cover'] = $model->cover;
-//            if($model->cover)
-            {
-                if ($_FILES['Product']['error']['cover'] == 0) {
-                    $key = uniqid();
-                    $qiniu->uploadFile($_FILES['Product']['name']['cover'] ,$_FILES['Product']['tmp_name']['cover'], $key);
-                    $post['Product']['cover'] = $qiniu->getLink($key);
-                    $qiniu->delete(basename($model->cover));
+//            var_dump($post,$_FILES);die;
 
-                }
-            }
-            $pics = [];
-            foreach($_FILES['Product']['tmp_name']['pics'] as $k => $file) {
-                if ($_FILES['Product']['error']['pics'][$k] > 0) {
-                    continue;
 
-                }
-                $key = uniqid();
-                $qiniu->uploadfile($_FILES['Product']['name']['pics'][$k],$file, $key);
-                $pics[$key] = $qiniu->getlink($key);
 
-            }
-            $post['Product']['pics'] = json_encode(array_merge((array)json_decode($model->pics, true), $pics));
+//            $qiniu = new Qiniu(Product::AK, Product::SK, Product::DOMAIN, Product::BUCKET);
+//            $post['Product']['cover'] = $model->cover;
+//            if ($_FILES['Product']['error']['cover'] == 0) {
+//                $key = uniqid();
+//                $qiniu->uploadFile($_FILES['Product']['name']['cover'] ,$_FILES['Product']['tmp_name']['cover'], $key);
+//                $post['Product']['cover'] = $qiniu->getLink($key);
+//                $qiniu->delete(basename($model->cover));
+//
+//            }
+//            $pics = [];
+//            foreach($_FILES['Product']['tmp_name']['pics'] as $k => $file) {
+//                if ($_FILES['Product']['error']['pics'][$k] > 0) {
+//                    continue;
+//
+//                }
+//                $key = uniqid();
+//                $qiniu->uploadfile($_FILES['Product']['name']['pics'][$k],$file, $key);
+//                $pics[$key] = $qiniu->getlink($key);
+//
+//            }
+//            $post['Product']['pics'] = json_encode(array_merge((array)json_decode($model->pics, true), $pics));
+
             //一个场景图片图片都没有是不可以的！
 //            if(count($pics) < 1)
 //            {
@@ -551,10 +553,24 @@ var_dump($data);die;
 //            }
 //            else
             {
+//                var_dump($post);die;
+
+                $pics = $this->upload();
+                if (!$pics) {
+                    $model->addError('cover', '封面不能为空');
+                } else {
+                    $post['Product']['cover'] = $pics['cover'];
+                    $post['Product']['pics'] = $pics['pics'];
+                    $post['Product']['pics_name'] = rtrim($pics['pics_name'],",");
+                    $post['Product']['cover_name'] = $pics['cover_name'];
+                }
+
+
                 if ($model->load($post) && $model->save()) {
 
                     $reslt = $this->gen($productid);
                     echo $reslt;
+
                     Yii::$app->session->setFlash('info', '修改成功');
 
                 }
