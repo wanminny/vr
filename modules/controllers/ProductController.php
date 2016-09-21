@@ -53,7 +53,7 @@ class ProductController extends Controller
             } else {
                 $post['Product']['cover'] = $pics['cover'];
                 $post['Product']['pics'] = $pics['pics'];
-                $post['Product']['pics_name'] = $pics['pics_name'];
+                $post['Product']['pics_name'] = rtrim($pics['pics_name'],",");
                 $post['Product']['cover_name'] = $pics['cover_name'];
             }
 
@@ -98,7 +98,7 @@ class ProductController extends Controller
             $qiniu->uploadFile($_FILES['Product']['name']['pics'][$k],$file, $key);
 
             $pics[$key] = $qiniu->getLink($key);
-            $pics_name .= $_FILES['Product']['name']['pics'][$k];
+            $pics_name .= $_FILES['Product']['name']['pics'][$k].",";
         }
         $cover_name = $_FILES['Product']['name']['cover'];
 //        $pics_name =
@@ -422,7 +422,7 @@ class ProductController extends Controller
         }catch (Exception $e) {
             $transaction->rollBack();
         }
-        
+
     }
 
 
@@ -431,8 +431,7 @@ class ProductController extends Controller
     {
         //或者可以将其已JSON字符串 POS过来
         $data = Yii::$app->request->post();
-//        var_dump($data);
-
+var_dump($data);die;
         $rlt = [];
         $rlt['status'] = 0;
         $rlt['msg'] = "保存不成功";
@@ -440,7 +439,7 @@ class ProductController extends Controller
        //更新数据库
         if($data)
         {
-            $proId = isset($data['pid']);
+            $proId = isset($data['pid'])?$data['pid']:'';
             if($proId)
             {
                 //根据工程ID和场景名称获取热点表数据
@@ -455,6 +454,7 @@ class ProductController extends Controller
                         try{
                             //获取一个PID所属于的所有场景的名称
                             $scene_names = Scene::getSceneName($proId);
+
                             foreach($scene_names as $k2 => $v2)
                             {
                                 if($key ==  $v2['name'])
