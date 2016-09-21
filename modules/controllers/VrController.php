@@ -40,9 +40,9 @@ class VrController extends CommonController
                 //获取指定视图的热点信息
                 if($view_scene)
                 {
-                    $scene_info[$value['name']]['view'] = $view_scene[0];
+                    $scene_info[$value['name']]['view'] = $view_scene[$key];
                     //获取改工程下面的场景
-                    $scene_id = $view_scene[0]['scene_id'];
+                    $scene_id = $view_scene[$key]['scene_id'];
                     if($scene_id)
                     {
                         $scene_info[$value['name']]['hotspots'] = $pro_model->getHotspotsById($scene_id);
@@ -93,6 +93,10 @@ class VrController extends CommonController
     public function actionXml()
     {
         $pid = \Yii::$app->request->getQueryParam("productid","");
+
+//        $xml = $this->composeData($pid);
+//        var_dump($xml);
+//        die;
         if($pid)
         {
             $xml = $this->composeData($pid);
