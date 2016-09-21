@@ -324,6 +324,7 @@ class ProductController extends Controller
                 }
                 else{
                     //多个场景
+                    var_dump($scene);die;
                     foreach($scene as $key => $value)
                     {
                         $scene_name = $scene['@attributes']['name'];

@@ -74,31 +74,65 @@ class Scene extends \yii\db\ActiveRecord
     //获取场景的name id 信息 有可能多个；
     public static function getSceneName($proId)
     {
-       $data =  Scene::findBySql("select name,id from leju_scene where pro_id =".$proId)->asArray()->all();
-
+       $sql = "select name,id from leju_scene where pro_id =".$proId;
+//        var_dump($sql);
+       $data =  Scene::findBySql($sql)->asArray()->all();
+//var_dump($data);
        return $data;
     }
 
 
-    //更新对应的HOTSPOTS表
+    /**
+     * 更新对应的HOTSPOTS表.
+     *
+     * @param integer $id scene_id
+     * @param array
+     * @retrun mixed
+     */
     public static function editInfo($id,$arr)
     {
-        $model = Scene::findOne($id);
-
-        if(count($arr))
+//        $model_scene = Scene::findOne($id);
+        //热点
+        $model_hot = Hotspots::findBySql("select * from leju_hotspots wherer scene_id =".$id)->asArray()->all();
+        if(empty($model_hot))
         {
-            foreach($arr as $key => $value)
+            //新建
+            $model_hot = new Hotspots();
+            if(count($arr))
             {
-                foreach($value as $kk => $vv)
+                foreach($arr as $key => $value)
                 {
-                    if($kk != "hname")
+                    foreach($value as $kk => $vv)
                     {
-                        $model->$kk = $vv;
+//                    if($kk != "hname")
+                        {
+                            $model_hot->$kk = $vv;
+                        }
                     }
+                    $model_hot->scene_id = $id;
+                    $model_hot->save(false);
+                }
+            }
+
+        }
+        foreach($model_hot as $kk => $vv)
+        {
+            if(count($arr))
+            {
+                foreach($arr as $key => $value)
+                {
+                    foreach($value as $kk => $vv)
+                    {
+//                    if($kk != "hname")
+                        {
+                            $model_hot->$kk = $vv;
+                        }
+                    }
+                    $model_hot->scene_id = $id;
+                    $model_hot->update(false);
                 }
 
             }
-            $model->save();
         }
 
     }
