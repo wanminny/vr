@@ -324,12 +324,12 @@ class ProductController extends Controller
                 }
                 else{
                     //多个场景
-                    var_dump($scene);die;
+//                    var_dump($scene);die;
                     foreach($scene as $key => $value)
                     {
-                        $scene_name = $scene['@attributes']['name'];
-                        $scene_title = $scene['@attributes']['title'];
-                        $scene_thumburl = $scene['@attributes']['thumburl'];
+                        $scene_name = $value['@attributes']['name'];
+                        $scene_title = $value['@attributes']['title'];
+                        $scene_thumburl = $value['@attributes']['thumburl'];
                         $scene_pro_id = $proId;
 
                         $scene = new Scene();
@@ -395,6 +395,7 @@ class ProductController extends Controller
                             }
                             //若干个热点
                             else{
+                                ///$pro_view_hotspot =》$v (刚开始是没有热点的？？)
                                 foreach($pro_view_hotspot as $k => $v)
                                 {
                                     $pro_view_hotspot_ath = isset($pro_view_hotspot['@attributes']['ath'])?$pro_view_hotspot['@attributes']['ath']:'';
