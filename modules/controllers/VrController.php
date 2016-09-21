@@ -92,7 +92,12 @@ class VrController extends CommonController
     //获取制定XML模板
     public function actionXml()
     {
+
         $pid = \Yii::$app->request->getQueryParam("productid","");
+
+        $xml = $this->composeData($pid);
+        var_dump($xml);
+        die;
 
         if($pid)
         {
