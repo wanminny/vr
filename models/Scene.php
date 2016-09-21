@@ -111,22 +111,55 @@ class Scene extends \yii\db\ActiveRecord
                 }
             }
         }
-        var_dump($model_hot,$arr);
+//        var_dump($model_hot,$arr);die;
         foreach($model_hot as $kk => $vv)
         {
-            if(count($arr))
+            //没有ID的
+            if(isset($vv['id']) && $vv['id'])
             {
-                foreach($arr as $key => $value)
-                {
-                    foreach($value as $kk => $vv)
-                    {
-                        $model_hot->$kk = $vv;
-                    }
-                    $model_hot->scene_id = $id;
-                    $model_hot->update(false);
-                }
 
+                $hot_model = new Hotspots();
+                $hot_model->findOne($vv['id']);
+                foreach($arr as $k1 => $v1)
+                {
+                    //更新
+                    if(isset($v1['id']) && $v1['id'])
+                    {
+                        foreach($v1 as $k2=>$v2)
+                        {
+                            if($k2 != 'id')
+                            {
+                                $hot_model->$k2 = $v2;
+                            }
+                        }
+                        $hot_model->save();
+                    }
+                    //新建
+                    else
+                    {
+                        $model_hot_new = new Hotspots();
+                        foreach($v1 as $k2=>$v2)
+                        {
+                            $model_hot_new->$k2 = $v2;
+                        }
+                        $model_hot_new->save(false);
+                    }
+                }
             }
+//            else{
+//                //有ID的为新增的；
+//                //新建
+//                $model_hot = new Hotspots();
+//                foreach($arr as $key => $value)
+//                {
+//                    foreach($value as $kk => $vv)
+//                    {
+//                        $model_hot->$kk = $vv;
+//                    }
+//                    $model_hot->scene_id = $id;
+//                    $model_hot->save(false);
+//                }
+//            }
         }
 
     }
