@@ -120,6 +120,7 @@
         <preview url="vtour/panos/<?=$v['view']['title']?>.tiles/preview.jpg" />
 
         <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+                <cube url="vtour/panos/<?=$v['view']['title']?>.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
                 <cube url="vtour/panos/<?=$v['view']['title']?>.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
         </image>
 
