@@ -104,17 +104,14 @@ class Scene extends \yii\db\ActiveRecord
                 {
                     foreach($value as $kk => $vv)
                     {
-//                    if($kk != "hname")
-                        {
-                            $model_hot->$kk = $vv;
-                        }
+                        $model_hot->$kk = $vv;
                     }
                     $model_hot->scene_id = $id;
                     $model_hot->save(false);
                 }
             }
-
         }
+        var_dump($model_hot,$arr);
         foreach($model_hot as $kk => $vv)
         {
             if(count($arr))
@@ -123,10 +120,7 @@ class Scene extends \yii\db\ActiveRecord
                 {
                     foreach($value as $kk => $vv)
                     {
-//                    if($kk != "hname")
-                        {
-                            $model_hot->$kk = $vv;
-                        }
+                        $model_hot->$kk = $vv;
                     }
                     $model_hot->scene_id = $id;
                     $model_hot->update(false);

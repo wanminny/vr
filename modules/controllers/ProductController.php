@@ -434,7 +434,7 @@ class ProductController extends Controller
     {
         //或者可以将其已JSON字符串 POS过来
         $data = Yii::$app->request->post();
-        var_dump($data);die;
+//        var_dump($data);die;
         $rlt = [];
         $rlt['status'] = 0;
         $rlt['msg'] = "保存不成功";
