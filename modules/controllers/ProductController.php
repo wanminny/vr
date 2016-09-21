@@ -422,54 +422,7 @@ class ProductController extends Controller
         }catch (Exception $e) {
             $transaction->rollBack();
         }
-
-        $scene = $demo['scene'];
-        //视图节点；
-        $xml_new = Array2XML::createXml("scene",$scene);
-        $c =$xml_new->saveXML($xml_new);
-
-        $xml_head = '<?xml version="1.0" encoding="UTF-8"?>';
-        $append_xml = substr($c,strlen($xml_head));
-        //scene 场景节点XML 结构
-        $redis = \Yii::$app->redis;
-        $redis->set($proId,$append_xml);
-//        $this->genEditxml($proId);
-    }
-
-    //生成editxml文件 and tour.xml
-    public function genEditxml($pid)
-    {
-       $xml = Scene::getSeneInfo($pid);
-       //追加SCENE场景文件形成TOUR.XML
-        $this->appendXml($xml,"tour.xml");
-        //追加SCENE场景文件形成EDIT.XML
-        $this->appendXml($xml,"tour_editor.xml");
-
-    }
-
-    public function actionTest()
-    {
-        $pid = \Yii::$app->request->get("pid");
-        $xml = Scene::getScenexml($pid);
-        var_dump($xml);
-        $filename = \Yii::$app->basePath.\Yii::$app->params['gen_xml_path'];
-        var_dump($filename);
-
-        //动态生成文件内容；
-//        $filename = \Yii::$app->params['xml_path'];
-        $fp = fopen($filename, 'r+');
-        $int = -(strlen("</krpano>")+3);
-        fseek($fp, $int,SEEK_END); // int 为你想写的位置距离文件开头的位置
-        fwrite($fp, $xml);
-
-    }
-
-
-    //最近生成文件；
-    private function appendXml($xml,$filename)
-    {
-
-
+        
     }
 
 
