@@ -150,6 +150,7 @@ class ProductController extends Controller
 
         $command = $toolPath.$config.$image.$parameters;
         var_dump($image,file_exists($image),$command);
+        die;
         $returnValue = '';
 //        if(file_exists($image))
         {
