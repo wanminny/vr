@@ -271,20 +271,24 @@ class ProductController extends Controller
                             $scene_image = $demo['scene']['image'];
                             if(is_array($scene_image) && count($scene_image))
                             {
-                                foreach($scene_image as $k_img => $v_img)
+                                $level =  isset($scene_image['0']['level'])?$scene_image['0']['level']:'';
+                                if(is_array($level) && count($level))
                                 {
-                                    if(isset($v_img['level']['@attributes']))
+                                    foreach($level as $k_img => $v_img)
                                     {
-                                        if($k_img == 0)
+                                        if(isset($v_img['@attributes']))
                                         {
-                                            $view->level_1_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
-                                            $view->level_1_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
+                                            if($k_img == 0)
+                                            {
+                                                $view->level_1_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
+                                                $view->level_1_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
+                                            }
+                                            else{
+                                                $view->level_2_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
+                                                $view->level_2_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
+                                            }
                                         }
-                                        else{
-                                            $view->level_2_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
-                                            $view->level_2_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
-                                        }
-                                                             }
+                                    }
                                 }
                             }
 //                            var_dump( $view->hlookat, $view->vlookat, $view->scene_id);
@@ -385,21 +389,25 @@ class ProductController extends Controller
                                 $view->scene_id = $scene_id;
 
                                 //视图的渲染宽高
-                                $scene_image = $value['image'];
+                                $scene_image = $value['scene']['image'];
                                 if(is_array($scene_image) && count($scene_image))
                                 {
-                                    foreach($scene_image as $k_img => $v_img)
+                                    $level =  isset($scene_image['0']['level'])?$scene_image['0']['level']:'';
+                                    if(is_array($level) && count($level))
                                     {
-                                        if(isset($v_img['level']['@attributes']))
+                                        foreach($level as $k_img => $v_img)
                                         {
-                                            if($k_img == 0)
+                                            if(isset($v_img['@attributes']))
                                             {
-                                                $view->level_1_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
-                                                $view->level_1_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
-                                            }
-                                            else{
-                                                $view->level_2_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
-                                                $view->level_2_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
+                                                if($k_img == 0)
+                                                {
+                                                    $view->level_1_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
+                                                    $view->level_1_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
+                                                }
+                                                else{
+                                                    $view->level_2_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
+                                                    $view->level_2_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
+                                                }
                                             }
                                         }
                                     }
