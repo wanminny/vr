@@ -163,7 +163,7 @@ class ProductController extends Controller
         }
         exec($command,$output,$returnValue);
 
-var_dump($returnValue);die;
+//var_dump($returnValue);die;
         if($returnValue === 0)
         {
             //拷贝panos dir

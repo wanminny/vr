@@ -112,8 +112,6 @@ class Qiniu
             if(move_uploaded_file($files,$this->upload_path.$name)){
 
 //                @chmod($this->upload_path.$name,"0644");
-//                echo "ok!";
-//                            return $file['name'][$key];
             }else{
                 echo "Failed!";
             }
