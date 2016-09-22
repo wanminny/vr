@@ -59,18 +59,24 @@
         <preview url="vtour/panos/<?=$v['view']['title']?>.tiles/preview.jpg" />
 
         <!--<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">-->
-        <image>
-            <cube url="http://cdn.useevr.cn/5/2016921SsYHKM/pano_%s.jpg" />
+        <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
             <!--<cube url="vtour/panos/<?=$v['view']['title']?>.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />-->
-            <!--<level>-->
+            <!--<level tiledimagewidth="" tiledimageheight="">-->
                 <!--&lt;!&ndash;<cube url="panos/111111.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />&ndash;&gt;-->
-                <!--<cube url="http://cdn.useevr.cn/5/2016921SsYHKM/pano_%s.jpg" />-->
                 <!--<cube url="vtour/panos/<?=$v['view']['title']?>.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />-->
             <!--</level>-->
             <!--<level tiledimagewidth="640" tiledimageheight="640">-->
-                <!--<cube url="panos/111111.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />-->
+                <!--&lt;!&ndash;<cube url="panos/111111.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />&ndash;&gt;-->
                 <!--<cube url="vtour/panos/<?=$v['view']['title']?>.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />-->
             <!--</level>-->
+                <level tiledimagewidth="1280" tiledimageheight="1280">
+                    <cube url="vtour/panos/<?=$v['view']['title']?>.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+                </level>
+                <level tiledimagewidth="640" tiledimageheight="640">
+                    <cube url="vtour/panos/<?=$v['view']['title']?>.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+                </level>
+
+
 
         </image>
 
