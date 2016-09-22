@@ -391,7 +391,7 @@ var_dump($returnValue);die;
                                 $view->scene_id = $scene_id;
 
                                 //视图的渲染宽高
-                                $scene_image = $value['scene']['image'];
+                                $scene_image = $value['image'];
                                 if(is_array($scene_image) && count($scene_image))
                                 {
                                     $level =  isset($scene_image['0']['level'])?$scene_image['0']['level']:'';
