@@ -214,7 +214,8 @@ class ProductController extends Controller
     {
 
         //入库
-        $xml_path = \Yii::$app->basePath.\Yii::$app->params['gen_xml_path'];
+//        $xml_path = \Yii::$app->basePath.\Yii::$app->params['gen_xml_path'];
+        $xml_path = \Yii::$app->params['gen_xml_path'];
         $xml = file_get_contents($xml_path);
         $demo =  $this->xmlToArray($xml);
 //var_dump($demo['scene']);die;
