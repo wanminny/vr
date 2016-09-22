@@ -78,6 +78,7 @@ class Product extends ActiveRecord
     {
             $sql = 'SELECT
         scene.title,scene.thumburl,
+         scene.level_1_w,scene.level_1_h,scene.level_2_w,scene.level_2_h,
         leju_view.scene_id,
         leju_view.hlookat,
         leju_view.vlookat

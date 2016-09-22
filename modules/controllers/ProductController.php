@@ -146,9 +146,9 @@ class ProductController extends Controller
 
 //        $image = $this->upload_path.$imgName;
         $image = $pics_path;
-        $parameters = " -panotype=cylinder -hfov=360 ";
+//        $parameters = " -panotype=cylinder -hfov=360 ";
 
-        $command = $toolPath.$config.$image.$parameters;
+        $command = $toolPath.$config.$image;
         var_dump($image,file_exists($image),$command);
 //        die;
         $returnValue = '';
@@ -216,7 +216,7 @@ class ProductController extends Controller
         $xml_path = \Yii::$app->basePath.\Yii::$app->params['gen_xml_path'];
         $xml = file_get_contents($xml_path);
         $demo =  $this->xmlToArray($xml);
-
+//var_dump($demo['scene']);die;
 //        var_dump($demo['scene']['view']);
 //        die;
 //        var_dump($demo);die;
@@ -231,7 +231,6 @@ class ProductController extends Controller
                 //只有一个场景
                 if(isset($scene['@attributes']))
                 {
-
                     $scene_name = $scene['@attributes']['name'];
                     $scene_title = $scene['@attributes']['title'];
                     $scene_thumburl = $scene['@attributes']['thumburl'];
@@ -268,6 +267,26 @@ class ProductController extends Controller
                             $view->hlookat = $view_hlookat;
                             $view->vlookat = $view_vlookat;
                             $view->scene_id = $scene_id;
+                            //视图的渲染宽高
+                            $scene_image = $demo['scene']['image'];
+                            if(is_array($scene_image) && count($scene_image))
+                            {
+                                foreach($scene_image as $k_img => $v_img)
+                                {
+                                    if(isset($v_img['level']['@attributes']))
+                                    {
+                                        if($k_img == 0)
+                                        {
+                                            $view->level_1_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
+                                            $view->level_1_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
+                                        }
+                                        else{
+                                            $view->level_2_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
+                                            $view->level_2_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
+                                        }
+                                                             }
+                                }
+                            }
 //                            var_dump( $view->hlookat, $view->vlookat, $view->scene_id);
                             $view->save(false);
                         }
@@ -364,6 +383,28 @@ class ProductController extends Controller
                                 $view->hlookat = $view_hlookat;
                                 $view->vlookat = $view_vlookat;
                                 $view->scene_id = $scene_id;
+
+                                //视图的渲染宽高
+                                $scene_image = $value['image'];
+                                if(is_array($scene_image) && count($scene_image))
+                                {
+                                    foreach($scene_image as $k_img => $v_img)
+                                    {
+                                        if(isset($v_img['level']['@attributes']))
+                                        {
+                                            if($k_img == 0)
+                                            {
+                                                $view->level_1_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
+                                                $view->level_1_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
+                                            }
+                                            else{
+                                                $view->level_2_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
+                                                $view->level_2_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
+                                            }
+                                        }
+                                    }
+                                }
+
                                 $view->save(false);
                             }
                         }
@@ -488,7 +529,6 @@ class ProductController extends Controller
                 }
             }
         }
-
         return json_encode($rlt);
     }
 
