@@ -168,7 +168,8 @@ class ProductController extends Controller
         if($returnValue === 0)
         {
             //拷贝panos dir
-            $soucre = \Yii::$app->basePath."/web/" .\Yii::$app->params['source_path'];
+//            $soucre = \Yii::$app->basePath."/web/" .\Yii::$app->params['source_path'];
+            $soucre = \Yii::$app->params['source_path'];
             $dest = \Yii::$app->basePath."/web/" .\Yii::$app->params['dest_path'];
             var_dump($soucre,$dest);
 //            @copy($soucre,$dest);
