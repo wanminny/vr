@@ -280,12 +280,12 @@ class ProductController extends Controller
                                         {
                                             if($k_img == 0)
                                             {
-                                                $view->level_1_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
-                                                $view->level_1_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
+                                                $view->level_1_w = isset($v_img['@attributes']['tiledimagewidth'])?$v_img['@attributes']['tiledimagewidth']:'';
+                                                $view->level_1_h = isset($v_img['@attributes']['tiledimageheight'])?$v_img['@attributes']['tiledimageheight']:'';
                                             }
                                             else{
-                                                $view->level_2_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
-                                                $view->level_2_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
+                                                $view->level_2_w = isset($v_img['@attributes']['tiledimagewidth'])?$v_img['@attributes']['tiledimagewidth']:'';
+                                                $view->level_2_h = isset($v_img['@attributes']['tiledimageheight'])?$v_img['@attributes']['tiledimageheight']:'';
                                             }
                                         }
                                     }
@@ -401,12 +401,12 @@ class ProductController extends Controller
                                             {
                                                 if($k_img == 0)
                                                 {
-                                                    $view->level_1_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
-                                                    $view->level_1_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
+                                                    $view->level_1_w = isset($v_img['@attributes']['tiledimagewidth'])?$v_img['@attributes']['tiledimagewidth']:'';
+                                                    $view->level_1_h = isset($v_img['@attributes']['tiledimageheight'])?$v_img['@attributes']['tiledimageheight']:'';
                                                 }
                                                 else{
-                                                    $view->level_2_w = isset($v_img['level']['@attributes'][$k_img]['tiledimagewidth'])?$v_img['level']['@attributes'][$k_img]['tiledimagewidth']:'';
-                                                    $view->level_2_h = isset($v_img['level']['@attributes'][$k_img]['tiledimageheight'])?$v_img['level']['@attributes'][$k_img]['tiledimageheight']:'';
+                                                    $view->level_2_w = isset($v_img['@attributes']['tiledimagewidth'])?$v_img['@attributes']['tiledimagewidth']:'';
+                                                    $view->level_2_h = isset($v_img['@attributes']['tiledimageheight'])?$v_img['@attributes']['tiledimageheight']:'';
                                                 }
                                             }
                                         }
