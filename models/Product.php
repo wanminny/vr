@@ -78,9 +78,9 @@ class Product extends ActiveRecord
     {
             $sql = 'SELECT
         scene.title,scene.thumburl,
-         scene.level_1_w,scene.level_1_h,scene.level_2_w,scene.level_2_h,
         leju_view.scene_id,
         leju_view.hlookat,
+                 leju_view.level_1_w,leju_view.level_1_h,leju_view.level_2_w,leju_view.level_2_h,
         leju_view.vlookat
     FROM
         leju_scene AS scene  JOIN leju_view ON leju_view.scene_id = scene.id and scene.pro_id ='.$proId;
