@@ -114,10 +114,16 @@
 
         <preview url="vtour/panos/<?=$v['view']['title']?>.tiles/preview.jpg" />
 
+
         <image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+            <level tiledimagewidth="<?=$v['view']['level_1_w']?>" tiledimageheight="<?=$v['view']['level_1_h']?>">
                 <cube url="vtour/panos/<?=$v['view']['title']?>.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+            </level>
+            <level tiledimagewidth="<?=$v['view']['level_2_w']?>" tiledimageheight="<?=$v['view']['level_2_h']?>">
                 <cube url="vtour/panos/<?=$v['view']['title']?>.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+            </level>
         </image>
+
 
         <image if="webvr.isenabled">
             <cube url="vtour/panos/<?=$v['view']['title']?>.tiles/vr/pano_%s.jpg" />
