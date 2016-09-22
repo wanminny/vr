@@ -150,7 +150,7 @@ class ProductController extends Controller
 //        $parameters = " -panotype=cylinder -hfov=360 ";
 
         $command = $toolPath.$config.$image;
-        var_dump($image,file_exists($image),$command);
+        var_dump($image,$command);
 //        die;
         $returnValue = '';
 //        if(file_exists($image))
@@ -161,7 +161,7 @@ class ProductController extends Controller
         {
             (exec("rm -rf /tmp/vr/vtour"));
         }
-        (exec($command,$output,$returnValue));
+        exec($command,$output,$returnValue);
 
 var_dump($returnValue);die;
         if($returnValue === 0)
