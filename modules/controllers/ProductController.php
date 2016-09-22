@@ -143,7 +143,7 @@ class ProductController extends Controller
         $toolPath = " /mnt/wwwroot/vr/web/krpano/krpanotools makepano  ";
         $config = " -config=templates/vtour-multires.config ";
 //        $image = "/Users/wanmin/Desktop/logoo.jpg";
-        $imgName = $pics_path;
+//        $imgName = $pics_path;
 
 //        $image = $this->upload_path.$imgName;
         $image = $pics_path;
