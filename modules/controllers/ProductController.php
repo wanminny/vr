@@ -157,11 +157,10 @@ class ProductController extends Controller
         {
             $output = [];
             $path = \Yii::$app->params['dir_path'];
-            if(file_exists($path."vtour"))
-            {
+//            if(file_exists($path."vtour"))
+//            {
                 (exec("rm -rf /tmp/vr/vtour"));
-            }
-
+//            }
             (exec($command,$output,$returnValue));
         }
 
@@ -175,8 +174,8 @@ class ProductController extends Controller
 //            @copy($soucre,$dest);
             $execute_cp = "cp -rf ".$soucre." ".$dest;
             exec($execute_cp);
-            $execute = "chmod  -R 777 ".\Yii::$app->basePath."/web/" ."vtour";
-            exec($execute);
+//            $execute = "chmod  -R 777 ".\Yii::$app->basePath."/web/" ."vtour";
+//            exec($execute);
 
             //todb and genxml
             $this->actionConv($proId);
