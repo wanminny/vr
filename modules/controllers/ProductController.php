@@ -112,7 +112,8 @@ class ProductController extends Controller
     public function gen($proId)
     {
 
-        $this->upload_path = \Yii::$app->basePath."/web/" .\Yii::$app->params['dir_path'];
+//        $this->upload_path = \Yii::$app->basePath."/web/" .\Yii::$app->params['dir_path'];
+        $this->upload_path = \Yii::$app->params['dir_path'];
         ///获取图片
         $pro = new Product();
         $info = $pro->getProInfoById($proId);
