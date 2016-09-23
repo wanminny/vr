@@ -226,7 +226,7 @@
 		   scale="0.5"
 		   tooltip=""
 		   onclick="if(linkedscene, skin_hidetooltips(); skin_hidehotspot_vr(); tween(scale,0.25,0.5); tween(oy,-20,0.5); tween(alpha,0,0.5); looktohotspot(); loadscene(get(linkedscene),null,get(skin_settings.loadscene_flags),get(skin_settings.loadscene_blend)); skin_updatescroll(); );"
-		   onloaded="hotspot_animate();addhotspot_txt();"/>
+		   onloaded="hotspot_animate();addhotspot_txt();switch(fullscreen);"/>
 
 	<!-- hotspot animation action -->
 	<action name="hotspot_animate">
