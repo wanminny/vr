@@ -80,7 +80,6 @@ class Qiniu
                     {
                         if(move_uploaded_file($v,$this->upload_path.$file['name'][$key][$k])){
                             echo "ok!";
-//                            return $file['name'][$key];
                         }else{
                             echo "Failed!";
                         }
@@ -104,8 +103,6 @@ class Qiniu
 
     public function uploadLocal($name,$files)
     {
-//        $_FILES = $files;
-
         if($files)
         {
 //            @copy($files,$this->upload_path.$name);
@@ -129,14 +126,10 @@ class Qiniu
 
     public function uploadFile($names,$filePath, $key = null, $bucket = '')
     {
-
-//        var_dump($filePath);die;
         if(!file_exists($filePath)){
             throw new HttpException(400, "上传的文件不存在");
         }
 //var_dump($names,$filePath);die;
-
-
         //上传到七牛
         $bucket = $bucket ? $bucket : $this->bucket;
         $uploadToken = $this->uploadToken(array('scope' => $bucket));
@@ -162,9 +155,6 @@ class Qiniu
         $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
         $result = $this->response($result);
-
-//        return $result;
-
         if ($status == 200) {
             $this->uploadLocal($names,$filePath);
             return $result;

@@ -7,7 +7,6 @@ use Think\Exception;
 use yii\web\Controller;
 use Yii;
 use yii\data\Pagination;
-//use crazyfd\qiniu\Qiniu;
 use app\common\libs\Qiniu;
 use app\modules\controllers\CommonController;
 use app\models\Scene;
@@ -167,7 +166,6 @@ class ProductController extends Controller
         if($returnValue === 0)
         {
             //拷贝panos dir
-//            $soucre = \Yii::$app->basePath."/web/" .\Yii::$app->params['source_path'];
             $soucre = \Yii::$app->params['source_path'];
             $dest = \Yii::$app->basePath."/web/" .\Yii::$app->params['dest_path'];
             var_dump($soucre,$dest);
@@ -219,9 +217,6 @@ class ProductController extends Controller
         $xml = file_get_contents($xml_path);
         $demo =  $this->xmlToArray($xml);
 //var_dump($demo['scene']);die;
-//        var_dump($demo['scene']['view']);
-//        die;
-//        var_dump($demo);die;
         $connection = \Yii::$app->db;
         $transaction = $connection->beginTransaction();
         try
