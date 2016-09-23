@@ -32,11 +32,26 @@ use app\models\Scene;
     <noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
 
     <script>
+        var b = document.querySelector("body");
+
+        function fullScreen() {
+            if(b.requestFullScreen) {
+                b.requestFullScreen();
+            } else if(b.webkitRequestFullScreen ) {
+                b.webkitRequestFullScreen();
+            } else if(b.mozRequestFullScreen) {
+                b.mozRequestFullScreen();
+            }
+        }
+
         var base_path = "vtour/";
         var swf_path = base_path+"tour.swf";
         var xml_path = "<?php echo yii\helpers\Url::to(['vr/xml', 'productid' => $pid]); ?>";
 
         embedpano({swf:swf_path, xml:xml_path, target:"pano", html5:"auto", mobilescale:1.0, passQueryParameters:true});
+
+
+
 
     </script>
 </div>
