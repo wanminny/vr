@@ -63,7 +63,7 @@ class VrController extends CommonController
         if($pid)
         {
             $scene_info = $this->composeData($pid);
-            return $this->render("index",["pid"=> $pid,"xml"=> json_encode($scene_info)]);
+            return $this->render("index",["pid"=> $pid]);
 
         }else{
             echo "项目id不存在";

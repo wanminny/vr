@@ -9,7 +9,7 @@ use app\models\Scene;
 
 ?>
 
-    <title>优视全景 - 场景设置</title>
+    <title>全景VR - 场景设置</title>
     <meta name="viewport"
           content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
