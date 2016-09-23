@@ -3,7 +3,7 @@
     <!-- load the WebVR plugin and assign it to a 'webvr' variable for easier usage -->
     <plugin name="WebVR" devices="html5" keep="true"
             url="webvr.js"
-            onloaded="copy(webvr, plugin[WebVR]);vr_setup();"
+            onloaded="copy(webvr, plugin[WebVR]);"
             mousespeed="0.00125"
             multireslock="true"
             mobilevr_support="true"
@@ -213,7 +213,7 @@
            html="进入VR模式"
            align="top" y="24"
            autoalpha="true" alpha="0.0"
-           onclick="webvr.enterVR();"
+           onclick="webvr.enterVR();vr_setup();"
             />
 
     <layer name="webvr_exitbutton" keep="true" vr="true"
