@@ -213,7 +213,7 @@
            html="进入VR模式"
            align="top" y="24"
            autoalpha="true" alpha="0.0"
-           onclick="webvr.enterVR();vr_setup();"
+           onclick="vr_setup();webvr.enterVR();"
             />
 
     <layer name="webvr_exitbutton" keep="true" vr="true"
