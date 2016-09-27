@@ -69,22 +69,17 @@ class Verify {
 
     public function word($word)
     {
-
-        $this->imageW || $this->imageW = $this->length*$this->fontSize*1.5 + $this->length*$this->fontSize/2;
-        // 图片高(px)
-        $this->imageH || $this->imageH = $this->fontSize * 2.5;
         // 建立一幅 $this->imageW x $this->imageH 的图像
-        $w = mb_strlen($word)*6+ 50;
+        $w = mb_strlen($word)*6+ 36;
         $h = 30;
 
         $this->_image = imagecreate($w, $h);
 
-        $bg = imagecolorallocate($this->_image, mt_rand(1,150), mt_rand(1,150), mt_rand(1,150));
+        $bg = imagecolorallocate($this->_image, 235,236,237);
 //        $bg = imagecolorallocate($this->_image, 255, 255, 255);
-        $black = imagecolorallocate($this->_image, $this->bg[0], $this->bg[1], $this->bg[2]);
+        $black = imagecolorallocate($this->_image, 130,130,130);
 
-        $black = imagecolorallocate($this->_image, 0, 0, 0); //设置一个颜色变量为黑色
-        imagestring($this->_image, 3, 18, 8, $word, $black); //水平的将字符串输出到图像中
+        imagestring($this->_image, 3, 10, 8, $word, $black); //水平的将字符串输出到图像中
 
         header('Content-type:image/png');
         imagepng($this->_image);
