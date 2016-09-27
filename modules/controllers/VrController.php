@@ -115,6 +115,7 @@ class VrController extends CommonController
     //获取制定editor_XML模板
     public function actionEditxml()
     {
+
         $pid = \Yii::$app->request->getQueryParam("productid","");
         if($pid)
         {
@@ -136,7 +137,7 @@ class VrController extends CommonController
 //            'length' => 8, // 验证码位数
         ];
         $Verify = new Verify($config); //设置验证码字符为纯数字
-        $code = $Verify->word($pic); //验证码
+        $Verify->word($pic); //验证码
     }
 
     //获取图片
