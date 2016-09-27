@@ -20,6 +20,8 @@ use app\common\libs\lss\Array2XML;
 class ProductController extends Controller
 {
 
+    public $enableCsrfValidation = false;
+    
     public $upload_path = '';
 
     public $xml_path = '';

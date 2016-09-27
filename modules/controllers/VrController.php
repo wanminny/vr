@@ -115,7 +115,6 @@ class VrController extends CommonController
     //获取制定editor_XML模板
     public function actionEditxml()
     {
-
         $pid = \Yii::$app->request->getQueryParam("productid","");
         if($pid)
         {
