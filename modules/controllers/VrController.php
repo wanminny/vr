@@ -13,6 +13,7 @@ use app\models\Scene;
 use app\models\Product;
 use app\models\view;
 use app\models\Hotspots;
+use app\common\libs\image\Verify;
 
 
 class VrController extends CommonController
@@ -126,6 +127,30 @@ class VrController extends CommonController
             exit;
         }
 
+    }
+
+
+    private function getCode($pic) {
+        $config = [
+            'fontSize' => 12, // 验证码字体大小
+//            'length' => 8, // 验证码位数
+        ];
+        $Verify = new Verify($config); //设置验证码字符为纯数字
+        $code = $Verify->word($pic); //验证码
+    }
+
+    //获取图片
+    public function actionPic()
+    {
+        $pic = \Yii::$app->request->get("word","");
+        if($pic)
+        {
+            $this->getCode($pic);
+        }
+        else{
+            echo "图片标题为空";
+            exit;
+        }
     }
 
 }

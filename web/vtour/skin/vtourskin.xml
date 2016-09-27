@@ -240,7 +240,7 @@
 	<action name="addhotspot_txt">
 		txtadd(hotspot_txt,get(name),'_vr');
 		addhotspot(get(hotspot_txt));
-		txtadd(pic_url,'/pic.php?word=',get(scene[get(linkedscene)].title));
+		txtadd(pic_url,"/index.php?r=admin/vr/pic&amp;word=",get(scene[get(linkedscene)].title));
 		set(hotspot[get(hotspot_txt)].url,get(pic_url));
 		set(hotspot[get(hotspot_txt)].zoom,false);
 		set(hotspot[get(hotspot_txt)].distorted,true);
