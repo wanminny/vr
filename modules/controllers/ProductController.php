@@ -555,11 +555,11 @@ class ProductController extends Controller
                                         //处理picspots (暂时不需要处理)
 
                                         //hotspots
-//                                        if($k1 == "hotspots" && !empty($v1))
-//                                        {
-//                                            //更新对应的hname 而且 sceneid = $v2['id']
-//                                            Scene::editInfo($v2['id'],$v1);
-//                                        }
+                                        if($k1 == "hotspots" && !empty($v1))
+                                        {
+                                            //更新对应的hname 而且 sceneid = $v2['id']
+                                            Scene::editInfo($v2['id'],$v1);
+                                        }
                                     }
                                 }
                             }
