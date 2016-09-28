@@ -75,8 +75,7 @@ class Verify {
 
         $this->_image = imagecreate($w, $h);
 
-        $bg = imagecolorallocate($this->_image, 235,236,237);
-//        $bg = imagecolorallocate($this->_image, 255, 255, 255);
+        imagecolorallocate($this->_image, 235,236,237);
         $black = imagecolorallocate($this->_image, 130,130,130);
 
         imagestring($this->_image, 3, 10, 8, $word, $black); //水平的将字符串输出到图像中

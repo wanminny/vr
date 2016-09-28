@@ -94,6 +94,7 @@ class Scene extends \yii\db\ActiveRecord
 //        $model_scene = Scene::findOne($id);
         //热点
         $model_hot = Hotspots::findBySql("select * from leju_hotspots WHERE scene_id =".$id)->asArray()->all();
+
         if(empty($model_hot))
         {
             //新建
@@ -132,7 +133,7 @@ class Scene extends \yii\db\ActiveRecord
                                 $hot_model->$k2 = $v2;
                             }
                         }
-                        $hot_model->save();
+                        $hot_model->save(false);
                     }
                     //新建
                     else

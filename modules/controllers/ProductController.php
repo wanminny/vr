@@ -21,7 +21,7 @@ class ProductController extends Controller
 {
 
     public $enableCsrfValidation = false;
-    
+
     public $upload_path = '';
 
     public $xml_path = '';
@@ -480,7 +480,6 @@ class ProductController extends Controller
     /// 保存设置 编辑热点等信息；
     public function actionSave()
     {
-        //或者可以将其已JSON字符串 POS过来
         $data = Yii::$app->request->post();
 //        var_dump($data);die;
         $rlt = [];
@@ -504,22 +503,63 @@ class ProductController extends Controller
                         try{
                             //获取一个PID所属于的所有场景的名称
                             $scene_names = Scene::getSceneName($proId);
+//                            var_dump($data['data'],$scene_names,$v);die;
                             foreach($scene_names as $k2 => $v2)
                             {
                                 if($key ==  $v2['name'])
                                 {
                                     foreach($v as $k1 => $v1)
                                     {
+                                        //删除热点 或者是添加热点
+                                        if($k1 == "hotspots" && !empty($v1))
+                                        {
+                                            //先查找场景下有多少个热点；如果当前的热点比参数要少则为新增；
+                                            ///反之则为删除；（根据场景ID和热点名称）
+
+                                            //更新对应的hname 而且 sceneid = $v2['id']
+
+                                            //获取信息 判断是新增还是删除
+                                           $hots = Hotspots::getHotInfo($v2['id']);
+//                                            var_dump($hots,$v1);die;
+                                           if($hots)
+                                           {
+                                               //new add
+//                                               if(count($hots) > count($v1))
+//                                               {
+//                                                   //new add
+//                                                   Hotspots::addHots($v2['id'],$v1);
+//                                               }
+//                                               var_dump(count($hots),count($v1));die;
+                                               // del
+                                               if(count($hots) > count($v1))
+                                               {
+                                                   Hotspots::delHot($hots,$v1);
+                                               }
+                                               //其他则是新增或者更新  count($hots) > count($v1) count($hots) == count($v1)
+                                               else{
+
+                                                   //更新对应的hname 而且 sceneid = $v2['id']
+                                                   Scene::editInfo($v2['id'],$v1);
+                                               }
+                                           }
+                                        }
+
                                         //处理view （暂时不需要处理）
+                                        //有视图的 hlookat,vlookat 参数也即设置初始角度
+                                        if($k1 == "view" && !empty($v1))
+                                        {
+                                            //更新对应的hname 而且 sceneid = $v2['id']
+                                            view::angle($v2['id'],$v1);
+                                        }
 
                                         //处理picspots (暂时不需要处理)
 
                                         //hotspots
-                                        if($k1 == "hotspots" && !empty($v1))
-                                        {
-                                            //更新对应的hname 而且 sceneid = $v2['id']
-                                            Scene::editInfo($v2['id'],$v1);
-                                        }
+//                                        if($k1 == "hotspots" && !empty($v1))
+//                                        {
+//                                            //更新对应的hname 而且 sceneid = $v2['id']
+//                                            Scene::editInfo($v2['id'],$v1);
+//                                        }
                                     }
                                 }
                             }

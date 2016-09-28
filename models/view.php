@@ -46,4 +46,29 @@ class view extends \yii\db\ActiveRecord
             'vlookat' => 'Vlookat',
         ];
     }
+
+    // 设置初始角度
+    public static function angle($id,$arr)
+    {
+       $model_view =  static::findOne(['scene_id'=>$id]);
+        //更新操作
+       if($model_view)
+       {
+            if(is_array($arr) && count($arr))
+            {
+                foreach($arr as $key => $value)
+                {
+                    //目前只是更新这两个字段
+                    if($key == "hlookat" || $key == "vlookat")
+                    {
+                        $model_view->$key = $value;
+                    }
+                }
+                $model_view->save(false);
+            }
+       }
+    }
+
+
+
 }

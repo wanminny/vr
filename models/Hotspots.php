@@ -52,4 +52,40 @@ class Hotspots extends \yii\db\ActiveRecord
             'rotate' => '旋转度',
         ];
     }
+
+    //获取某个场景下的热点信息
+    public static function getHotInfo($scene_id)
+    {
+        $sql = "select * from leju_hotspots where scene_id = ".$scene_id;
+        $model = static::findBySql($sql)->asArray()->all();
+
+        return $model;
+    }
+
+    //删除热点
+    public static function delHot($hots,$arr)
+    {
+        $ids = [];
+        if(is_array($arr) && count($arr))
+        {
+            foreach($arr as $key =>$value)
+            {
+                $ids[$key] = $value['id'];
+            }
+        }
+//        var_dump($ids);die;
+        //参数热点input
+        if(is_array($hots) && count($hots))
+        {
+            foreach($hots as $k1=>$v1)
+            {
+                if(!in_array($v1['id'],$ids))
+                {
+                    //del
+                    static::findOne($v1['id'])->delete();
+                }
+            }
+        }
+    }
+
 }
