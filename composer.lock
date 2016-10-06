@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4752e7d90b46b0b061071c973f3780c9",
-    "content-hash": "07deaa5708487ceaab9bb370ba45ae36",
+    "hash": "7354a34c974c7085ca279a90a8627905",
+    "content-hash": "9043f7c81e35dd10836241742fc1e434",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -160,6 +160,22 @@
                     "package.json"
                 ]
             }
+        },
+        {
+            "name": "bower-asset/vue",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vuejs/vue.git",
+                "reference": "e6d224c3c5ca3ff6a365326ba615d116764b68f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vuejs/vue/zipball/e6d224c3c5ca3ff6a365326ba615d116764b68f2",
+                "reference": "e6d224c3c5ca3ff6a365326ba615d116764b68f2",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -392,6 +408,49 @@
                 "mailer"
             ],
             "time": "2016-07-08 11:51:25"
+        },
+        {
+            "name": "trylife/yii2-vue",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/trylife/yii2-vue.git",
+                "reference": "c861675ec4e05b508bcce715f814010054063b16"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/trylife/yii2-vue/c861675ec4e05b508bcce715f814010054063b16.zip",
+                "reference": "c861675ec4e05b508bcce715f814010054063b16",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/vue": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "trylife\\vue\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "trylife",
+                    "email": "trylife@qq.com"
+                }
+            ],
+            "description": "Yii2 vue",
+            "keywords": [
+                "trylife",
+                "vue",
+                "yii2",
+                "yii2-vue"
+            ],
+            "time": "2016-09-30 03:19:50"
         },
         {
             "name": "yiisoft/yii2",

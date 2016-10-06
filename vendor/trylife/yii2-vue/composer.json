@@ -1,0 +1,22 @@
+{
+    "name": "trylife/yii2-vue",
+    "description": "Yii2 vue",
+    "type": "library",
+    "keywords": ["yii2","vue","trylife","yii2-vue"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "trylife",
+            "email": "trylife@qq.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "bower-asset/vue": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "trylife\\vue\\": ""
+        }
+    }
+}

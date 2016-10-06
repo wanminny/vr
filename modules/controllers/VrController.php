@@ -20,8 +20,17 @@ class VrController extends CommonController
 {
 
 
+
     public $enableCsrfValidation = false;
 
+
+    public function actionTest()
+    {
+        return $this->render("test");
+
+//        $vue = \trylife\vue\VueAsset::register($this);
+//        var_dump($vue);
+    }
 
     public function composeData($pid)
     {

@@ -25,10 +25,10 @@ $config = [
 //        ],
         'redis' => [
             'class' => 'yii\redis\Connection',
-            'hostname' => '192.168.16.253',
+            'hostname' => '127.0.0.1',
             'port' => 6379,
             'database' => 0,
-            'password'=> 'c6f106bac2d9aeb16d57',
+            'password'=> '',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
